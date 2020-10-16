@@ -15,32 +15,32 @@ import { RangeFilterBuilder } from '~/fake-server/filters/range-filter-builder';
 import { RatingFilterBuilder } from '~/fake-server/filters/rating-filter-builder';
 import { shopCategoriesList } from '~/fake-server/database/categories';
 import { VehicleFilterBuilder } from '~/fake-server/filters/vehicle-filter-builder';
-import {
-    IAddProductReviewData,
-    IGetSearchSuggestionsOptions,
-    IGetSearchSuggestionsResult,
-} from '~/api/base';
+import { IAddProductReviewData, IGetSearchSuggestionsOptions, IGetSearchSuggestionsResult } from '~/api/base';
 
 function getProducts(shift: number, categorySlug: string | null = null): IProduct[] {
     let shiftValue = shift;
-
     switch (categorySlug) {
-    case 'tires-wheels':
-    case 'power-tools': shiftValue += 5; break;
-    case 'interior-parts':
-    case 'hand-tools': shiftValue += 10; break;
-    case 'engine-drivetrain':
-    case 'plumbing': shiftValue += 15; break;
-    default:
+        case 'tires-wheels':
+            shiftValue += 5;
+            break;
+        case 'power-tools':
+            shiftValue += 5;
+            break;
+        case 'interior-parts':
+        case 'hand-tools':
+            shiftValue += 10;
+            break;
+        case 'engine-drivetrain':
+        case 'plumbing':
+            shiftValue += 15;
+            break;
+        default:
     }
 
     return [...dbProducts.slice(shiftValue), ...dbProducts.slice(0, shiftValue)];
 }
 
-export function getProductsList(
-    options: IListOptions = {},
-    filterValues: IFilterValues = {},
-): Promise<IProductsList> {
+export function getProductsList(options: IListOptions = {}, filterValues: IFilterValues = {}): Promise<IProductsList> {
     const filters: AbstractFilterBuilder[] = [
         new CategoryFilterBuilder('category', 'Categories'),
         new VehicleFilterBuilder('vehicle', 'Vehicle'),
@@ -82,19 +82,22 @@ export function getProductsList(
         return 0;
     });
 
-    const items = products.slice(from - 1, to) as unknown as Array<IProduct>;
+    const items = (products.slice(from - 1, to) as unknown) as Array<IProduct>;
 
-    return delayResponse(Promise.resolve({
-        items,
-        page,
-        limit,
-        sort,
-        total,
-        pages,
-        from,
-        to,
-        filters: filters.map((x) => x.build()),
-    }), 350);
+    return delayResponse(
+        Promise.resolve({
+            items,
+            page,
+            limit,
+            sort,
+            total,
+            pages,
+            from,
+            to,
+            filters: filters.map((x) => x.build()),
+        }),
+        350
+    );
 }
 
 export function getProductBySlug(slug: string): Promise<IProduct> {
@@ -129,7 +132,7 @@ export function getProductReviews(productId: number, options?: IListOptions): Pr
     const from = (page - 1) * limit + 1;
     const to = page * limit;
 
-    items = items.slice(from - 1, to) as unknown as Array<IReview>;
+    items = (items.slice(from - 1, to) as unknown) as Array<IReview>;
 
     return Promise.resolve({
         items,
@@ -146,7 +149,7 @@ export function getProductReviews(productId: number, options?: IListOptions): Pr
 export function addProductReview(productId: number, data: IAddProductReviewData): Promise<IReview> {
     const review: IReview = {
         id: getNextReviewId(),
-        date: (new Date()).toISOString().substr(0, 10),
+        date: new Date().toISOString().substr(0, 10),
         author: data.author,
         avatar: '/images/avatars/avatar-2.jpg',
         rating: data.rating,
@@ -160,11 +163,7 @@ export function addProductReview(productId: number, data: IAddProductReviewData)
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function getProductAnalogs(productId: number): Promise<IProduct[]> {
-    const slugs: string[] = [
-        'sunset-brake-kit',
-        'specter-brake-kit',
-        'brake-kit',
-    ];
+    const slugs: string[] = ['sunset-brake-kit', 'specter-brake-kit', 'brake-kit'];
     const analogs: IProduct[] = dbProducts.filter((x) => slugs.includes(x.slug));
 
     return Promise.resolve(clone(analogs));
@@ -196,7 +195,7 @@ export function getLatestProducts(limit: number): Promise<IProduct[]> {
 
 export function getSearchSuggestions(
     query: string,
-    options?: IGetSearchSuggestionsOptions,
+    options?: IGetSearchSuggestionsOptions
 ): Promise<IGetSearchSuggestionsResult> {
     const queryVal = query.toLowerCase();
     const optionsVal = {

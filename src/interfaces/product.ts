@@ -10,8 +10,7 @@ export interface IBaseAttributeGroup {
     customFields?: ICustomFields;
 }
 
-export type IProductAttributeGroup = IBaseAttributeGroup & { attributes: IProductAttribute[]; };
-export type IProductTypeAttributeGroup = IBaseAttributeGroup & { attributes: string[]; };
+export type IProductTypeAttributeGroup = IBaseAttributeGroup & { attributes: string[] };
 
 export interface IProductType {
     name: string;
@@ -33,6 +32,8 @@ export interface IProductAttribute {
     values: IProductAttributeValue[];
     customFields?: ICustomFields;
 }
+
+export type IProductAttributeGroup = IBaseAttributeGroup & { attributes: IProductAttribute[] };
 
 export interface IProductOptionValueBase {
     name: string;
@@ -80,7 +81,7 @@ export interface IProduct {
     partNumber: string;
     stock: IProductStock;
     price: number;
-    compareAtPrice: number|null;
+    compareAtPrice: number | null;
     images?: string[];
     badges?: string[];
     rating?: number;
@@ -92,7 +93,7 @@ export interface IProduct {
      * number[]  - An array of vehicle identifiers with which this part is compatible.
      */
     compatibility: 'all' | 'unknown' | number[];
-    brand?: IBrand|null;
+    brand?: IBrand | null;
     tags?: string[];
     type: IProductType;
     categories?: IShopCategory[];

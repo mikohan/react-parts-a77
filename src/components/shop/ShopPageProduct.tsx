@@ -45,11 +45,7 @@ interface Props {
 }
 
 function ShopPageProduct(props: Props) {
-    const {
-        product,
-        layout,
-        sidebarPosition = 'start',
-    } = props;
+    const { product, layout, sidebarPosition = 'start' } = props;
     const intl = useIntl();
     const wishlistAddItem = useWishlistAddItem();
     const compareAddItem = useCompareAddItem();
@@ -197,9 +193,7 @@ function ShopPageProduct(props: Props) {
                                         <FormattedMessage id="TABLE_BRAND" />
                                     </th>
                                     <td>
-                                        <AppLink href={url.brand(product.brand)}>
-                                            {product.brand.name}
-                                        </AppLink>
+                                        <AppLink href={url.brand(product.brand)}>{product.brand.name}</AppLink>
                                     </td>
                                 </tr>
                                 <tr>
@@ -235,13 +229,7 @@ function ShopPageProduct(props: Props) {
                                 required: true,
                             }}
                             render={({ value, onChange, onBlur }) => (
-                                <InputNumber
-                                    size="lg"
-                                    min={1}
-                                    value={value}
-                                    onChange={onChange}
-                                    onBlur={onBlur}
-                                />
+                                <InputNumber size="lg" min={1} value={value} onChange={onChange} onBlur={onBlur} />
                             )}
                         />
                     </div>
@@ -316,9 +304,7 @@ function ShopPageProduct(props: Props) {
         <React.Fragment>
             <PageTitle>{product.name}</PageTitle>
 
-            <BlockHeader
-                breadcrumb={breadcrumb}
-            />
+            <BlockHeader breadcrumb={breadcrumb} />
 
             <div className={classNames('block-split', { 'block-split--has-sidebar': layout === 'sidebar' })}>
                 <div className="container">
@@ -369,16 +355,13 @@ function ShopPageProduct(props: Props) {
                                     {layout === 'full' && (
                                         <div className="product__main">
                                             {product.excerpt && (
-                                                <div className="product__excerpt">
-                                                    {product.excerpt}
-                                                </div>
+                                                <div className="product__excerpt">{product.excerpt}</div>
                                             )}
 
                                             {featuredAttributes.length > 0 && (
                                                 <div className="product__features">
                                                     <div className="product__features-title">
-                                                        <FormattedMessage id="TEXT_KEY_FEATURES" />
-                                                        :
+                                                        <FormattedMessage id="TEXT_KEY_FEATURES" />:
                                                     </div>
                                                     <ul>
                                                         {featuredAttributes.map((attribute, index) => (
@@ -392,7 +375,6 @@ function ShopPageProduct(props: Props) {
                                                                 </span>
                                                             </li>
                                                         ))}
-
                                                     </ul>
                                                     <div className="product__features-link">
                                                         <AppLink href={{ href: { hash: 'product-tab-specification' } }}>

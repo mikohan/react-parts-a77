@@ -26,7 +26,14 @@ module.exports = {
         },
     },
     rules: {
-        indent: ['error', 4],
+        'comma-dangle': ['error', {
+            functions: 'never',
+            objects: 'ignore',
+            arrays: 'always-multiline',
+            import: 'always-multiline',
+            export: 'always-multiline'
+        }],
+        indent: ['error', 4, { SwitchCase: 1 }],
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
         'react/prop-types': [0],
