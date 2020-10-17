@@ -25,6 +25,6 @@ const dataShopLanguages: ILanguage[] = [
     },
 ];
 
-export const dataShopDefaultLocale = 'en';
+export const dataShopDefaultLocale = 'ru';
 
 export default dataShopLanguages;

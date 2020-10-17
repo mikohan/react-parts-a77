@@ -10,10 +10,12 @@ import Decor from '~/components/shared/Decor';
 import Post from '~/components/blog/Post';
 import { baseUrl } from '~/services/utils';
 import { IBlogPageSidebarPosition } from '~/interfaces/pages';
+import { IPost } from '../../interfaces/post';
 
 interface Props {
     featuredImage?: boolean;
     sidebarPosition?: IBlogPageSidebarPosition | false;
+    posts: IPost[];
 }
 
 function BlogPagePost(props: Props) {
@@ -30,7 +32,7 @@ function BlogPagePost(props: Props) {
                     {featuredImage && (
                         <div
                             className="post-header__image"
-                            style={{ backgroundImage: `url(${baseUrl('/images/posts/post-1.jpg')})` }}
+                            style={{ backgroundImage: `url(${props.posts[0].image})` }}
                         />
                     )}
 
@@ -44,7 +46,7 @@ function BlogPagePost(props: Props) {
                                 </li>
                             </ul>
                         </div>
-                        <h1 className="post-header__title">Morbi Interdum Velit Quis Magna Placerat Lobortis Eget</h1>
+                        <h1 className="post-header__title">{props.posts[0].title}</h1>
                         <div className="post-header__meta">
                             <ul className="post-header__meta-list">
                                 <li className="post-header__meta-item">
@@ -72,7 +74,7 @@ function BlogPagePost(props: Props) {
                                 <BlogSidebar />
                             </div>
                         )}
-                        <Post className="post-view__item post-view__item-post" />
+                        <Post className="post-view__item post-view__item-post" posts={props.posts} />
                         {sidebarPosition === 'end' && (
                             <div className="post-view__item post-view__item-sidebar">
                                 <BlogSidebar />

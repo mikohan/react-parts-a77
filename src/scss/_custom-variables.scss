@@ -4,7 +4,6 @@
 // -- You can add your variables to overwrite default values.
 // ----------------------------------------------------------
 
-
 // Change main theme color
 //$theme-scheme: (
 //    main:  #584d8c, // main theme color
@@ -51,7 +50,6 @@
 //    arrow-color: rgba(#fff, .25),
 //);
 
-
 // [KEY]-font-weight-map
 // As you know on screens with a small pixel density, text with the same font-weight value,
 // looks thicker on a black background than on a white background. This construction helps solve this problem.
@@ -88,7 +86,6 @@
 // Thus, in one place we can control the font-weight depending on the color scheme used,
 // without the need to change the font-weight in all style files.
 
-
 // How to change form-control (input) scheme
 //$form-control-default-scheme: (
 //    normal-bg-color: #fff,
@@ -112,9 +109,12 @@
 //    loader-color:      #fff,
 //);
 
+$direction: ltr; // specify the direction you need (ltr or rtl)
+$both-directions: false; // set to false to disable style compilation
+// for two directions
 
 //@import 'themes/theme-red/theme-variables';
-//@import 'themes/theme-blue/theme-variables';
+@import 'themes/theme-blue/theme-variables';
 //@import 'themes/theme-green/theme-variables';
 //@import 'themes/theme-orange/theme-variables';
 //@import 'themes/theme-violet/theme-variables';
