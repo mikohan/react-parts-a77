@@ -6,6 +6,7 @@ export interface IPost {
     date: string;
     slug: string;
     text: string;
+    author: string;
 }
 export interface MResponse {
     count: number;

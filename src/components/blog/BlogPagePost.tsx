@@ -52,7 +52,7 @@ function BlogPagePost(props: Props) {
                                 <li className="post-header__meta-item">
                                     {'By '}
                                     <AppLink href="/" className="post-header__meta-link">
-                                        Jessica Moore
+                                        {props.posts[0].author}
                                     </AppLink>
                                 </li>
                                 <li className="post-header__meta-item">November 30, 2018</li>

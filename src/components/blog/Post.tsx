@@ -25,8 +25,6 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 function Post(props: Props) {
     const { posts } = props;
-    console.log(posts, 'printing_props');
-    // const [blogState, setBlogState] = useState<IPost[]>([]);
 
     const { className, ...rootProps } = props;
 
