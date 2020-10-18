@@ -4,18 +4,26 @@
 import { BlogApi, IGetBlogCategoriesOptions } from '~/api/base';
 import { getBlogCategories, getLatestPosts } from '~/fake-server/endpoints';
 import { IBlogCategory } from '~/interfaces/category';
-import { IPost, MResponse } from '~/interfaces/post';
+import { IPost } from '~/interfaces/post';
+import { blogBaseUrl } from '~/config';
 
 import axios from 'axios';
 
 export class FakeBlogApi extends BlogApi {
     getPostById(id: number): Promise<IPost> {
-        const promise = axios.get(`http://localhost:8000/blog/posts/${id}`);
+        const promise = axios.get(`${blogBaseUrl}/${id}`);
         const dataPromise = promise.then((response) => response.data);
         return dataPromise;
     }
-    getLatestPosts(limit: number): Promise<IPost[]> {
-        const promise = axios.get('http://localhost:8000/blog/posts/');
+    getLatestPosts(limit: number = -1): Promise<IPost[]> {
+        let lastPartOfUrl: string = '';
+        if (limit === -1) {
+            lastPartOfUrl = '';
+        } else {
+            lastPartOfUrl = `?limit=${limit}`;
+        }
+
+        const promise = axios.get(`${blogBaseUrl}/${lastPartOfUrl}`);
         const dataPromise = promise.then((response) => response.data.results);
         return dataPromise;
     }

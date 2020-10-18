@@ -17,7 +17,6 @@ interface Props {
 
 function PostCard(props: Props) {
     const { post, layout } = props;
-    console.log(post);
 
     const rootClasses = classNames('post-card', {
         [`post-card--layout--${layout}`]: layout,
@@ -32,9 +31,10 @@ function PostCard(props: Props) {
             </div>
             <div className="post-card__content">
                 <div className="post-card__category">
+                    {/* link to category */}
                     {post.categories.map((category: IBlogCategory, index: number) => (
                         <AppLink href="/" key={index}>
-                            {category}
+                            {category.name}
                         </AppLink>
                     ))}
                 </div>

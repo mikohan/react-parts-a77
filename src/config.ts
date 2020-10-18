@@ -12,3 +12,5 @@ const config: IConfig = {
 };
 
 export default config;
+
+export const blogBaseUrl: string = `http://localhost:8000/blog/posts`;

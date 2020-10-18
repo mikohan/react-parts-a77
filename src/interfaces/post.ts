@@ -3,6 +3,7 @@ export interface IPost {
     title: string;
     image: string;
     categories: IBlogCategory[];
+    partCategory: IBlogPartsCategory[];
     date: string;
     slug: string;
     text: string;
@@ -14,6 +15,16 @@ export interface MResponse {
     results: IPost[];
 }
 
+export interface IBlogPartsCategory {
+    partsCategory: {
+        id: number;
+        name: string;
+    };
+}
+
 export interface IBlogCategory {
-    categroy: string | number;
+    categories: {
+        id: number;
+        name: string;
+    };
 }
