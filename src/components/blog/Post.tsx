@@ -14,17 +14,15 @@ import dataBlogComments from '~/data/blogComments';
 import dataBlogPosts from '~/data/blogPosts';
 
 import { FakeBlogApi } from '../../api/fake-api/fake-blog.api';
-import { ServerData } from '../../api/fake-api/fake-blog.api';
-import { IPost, MResponse } from '~/interfaces/post';
-import Axios from 'axios';
-import { InferGetStaticPropsType } from 'next';
+
+import { IPost } from '~/interfaces/post';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-    posts: IPost[];
+    post: IPost;
 }
 
 function Post(props: Props) {
-    const { posts } = props;
+    const { post } = props;
 
     const { className, ...rootProps } = props;
 
@@ -36,7 +34,7 @@ function Post(props: Props) {
         <div className={rootClasses} {...rootProps}>
             <div className="post-view__card post">
                 <div className="post__body typography">
-                    <div dangerouslySetInnerHTML={{ __html: posts[0].text }} />
+                    <div dangerouslySetInnerHTML={{ __html: post.text }} />
 
                     <p>
                         Raesent eu consequat nibh. Quisque ullamcorper, augue eu fringilla sodales, leo metus volutpat

@@ -26,7 +26,7 @@ const url = {
         href: `/catalog/[slug]${category.layout === 'products' ? '/products' : ''}?slug=${category.slug}`,
         as: `/catalog/${category.slug}${category.layout === 'products' ? '/products' : ''}`,
     }),
-    products: ({ filters }: { filters?: Record<string, string>} = {}): IAppLinkHref => ({
+    products: ({ filters }: { filters?: Record<string, string> } = {}): IAppLinkHref => ({
         href: {
             pathname: '/catalog/products',
             query: {
@@ -51,7 +51,11 @@ const url = {
 
     // blog pages
     blog: () => '/demo/blog/classic-right-sidebar',
-    post: (post: IPost) => '/demo/blog/post-full-width',
+    post: (post: IPost) => ({
+        href: `/demo/blog/post-right-sidebar/[id]?id=${post.id}`,
+        as: `/demo/blog/post-right-sidebar/${post.id}`,
+    }),
+    // post: (post: IPost) => `/demo/blog/post-right-sidebar/`,
 
     // auth pages
     signIn: () => '/account/login',

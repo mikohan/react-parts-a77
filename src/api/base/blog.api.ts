@@ -7,7 +7,7 @@ export interface IGetBlogCategoriesOptions {
 }
 
 export abstract class BlogApi {
-    abstract getLatestPosts(limit: number): Promise<MResponse[]>;
+    abstract getLatestPosts(limit: number): Promise<IPost[]>;
 
     abstract getCategories(options: IGetBlogCategoriesOptions): Promise<IBlogCategory[]>;
 }

@@ -15,10 +15,11 @@ import { IPost } from '../../interfaces/post';
 interface Props {
     featuredImage?: boolean;
     sidebarPosition?: IBlogPageSidebarPosition | false;
-    posts: IPost[];
+    post: IPost;
 }
 
 function BlogPagePost(props: Props) {
+    console.log(props);
     const { featuredImage = false, sidebarPosition = false } = props;
 
     return (
@@ -30,10 +31,7 @@ function BlogPagePost(props: Props) {
                     })}
                 >
                     {featuredImage && (
-                        <div
-                            className="post-header__image"
-                            style={{ backgroundImage: `url(${props.posts[0].image})` }}
-                        />
+                        <div className="post-header__image" style={{ backgroundImage: `url(${props.post.image})` }} />
                     )}
 
                     <div className="post-header__body">
@@ -46,13 +44,13 @@ function BlogPagePost(props: Props) {
                                 </li>
                             </ul>
                         </div>
-                        <h1 className="post-header__title">{props.posts[0].title}</h1>
+                        <h1 className="post-header__title">{props.post.title}</h1>
                         <div className="post-header__meta">
                             <ul className="post-header__meta-list">
                                 <li className="post-header__meta-item">
                                     {'By '}
                                     <AppLink href="/" className="post-header__meta-link">
-                                        {props.posts[0].author}
+                                        {props.post.author}
                                     </AppLink>
                                 </li>
                                 <li className="post-header__meta-item">November 30, 2018</li>
@@ -74,7 +72,7 @@ function BlogPagePost(props: Props) {
                                 <BlogSidebar />
                             </div>
                         )}
-                        <Post className="post-view__item post-view__item-post" posts={props.posts} />
+                        <Post className="post-view__item post-view__item-post" post={props.post} />
                         {sidebarPosition === 'end' && (
                             <div className="post-view__item post-view__item-sidebar">
                                 <BlogSidebar />

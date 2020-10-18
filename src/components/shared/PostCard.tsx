@@ -17,6 +17,7 @@ interface Props {
 
 function PostCard(props: Props) {
     const { post, layout } = props;
+    console.log(post);
 
     const rootClasses = classNames('post-card', {
         [`post-card--layout--${layout}`]: layout,
@@ -39,9 +40,7 @@ function PostCard(props: Props) {
                 </div>
                 <div className="post-card__title">
                     <h2>
-                        <AppLink href={url.post(post)}>
-                            {post.title}
-                        </AppLink>
+                        <AppLink href={url.post(post)}>{post.title}</AppLink>
                     </h2>
                 </div>
                 <div className="post-card__date">
@@ -53,9 +52,9 @@ function PostCard(props: Props) {
                 <div className="post-card__excerpt">
                     <div className="typography">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis neque ut purus
-                        fermentum, ac pretium nibh facilisis. Vivamus venenatis viverra iaculis. Suspendisse tempor
-                        orci non sapien ullamcorper dapibus. Suspendisse at velit diam. Donec pharetra nec enim
-                        blandit vulputate.
+                        fermentum, ac pretium nibh facilisis. Vivamus venenatis viverra iaculis. Suspendisse tempor orci
+                        non sapien ullamcorper dapibus. Suspendisse at velit diam. Donec pharetra nec enim blandit
+                        vulputate.
                     </div>
                 </div>
                 <div className="post-card__more">

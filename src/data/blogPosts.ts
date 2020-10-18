@@ -8,6 +8,9 @@ const dataBlogPosts: IPost[] = [
         image: '/images/posts/post-1.jpg',
         categories: ['Special Offers'],
         date: 'October 19, 2019',
+        slug: 'first-post',
+        author: 'Me',
+        text: 'Some text',
     },
     {
         id: 2,
@@ -15,6 +18,9 @@ const dataBlogPosts: IPost[] = [
         image: '/images/posts/post-2.jpg',
         categories: ['Latest News'],
         date: 'September 5, 2019',
+        slug: 'first-post',
+        author: 'Me',
+        text: 'Some text',
     },
     {
         id: 3,
@@ -22,6 +28,9 @@ const dataBlogPosts: IPost[] = [
         image: '/images/posts/post-3.jpg',
         categories: ['New Arrivals'],
         date: 'August 12, 2019',
+        slug: 'first-post',
+        author: 'Me',
+        text: 'Some text',
     },
     {
         id: 4,
@@ -29,6 +38,9 @@ const dataBlogPosts: IPost[] = [
         image: '/images/posts/post-4.jpg',
         categories: ['Special Offers'],
         date: 'Jule 30, 2019',
+        slug: 'first-post',
+        author: 'Me',
+        text: 'Some text',
     },
     {
         id: 5,
@@ -36,6 +48,9 @@ const dataBlogPosts: IPost[] = [
         image: '/images/posts/post-5.jpg',
         categories: ['New Arrivals'],
         date: 'June 12, 2019',
+        slug: 'first-post',
+        author: 'Me',
+        text: 'Some text',
     },
     {
         id: 6,
@@ -43,6 +58,9 @@ const dataBlogPosts: IPost[] = [
         image: '/images/posts/post-6.jpg',
         categories: ['Special Offers'],
         date: 'May 21, 2019',
+        slug: 'first-post',
+        author: 'Me',
+        text: 'Some text',
     },
     {
         id: 7,
@@ -50,6 +68,9 @@ const dataBlogPosts: IPost[] = [
         image: '/images/posts/post-7.jpg',
         categories: ['Special Offers'],
         date: 'April 3, 2019',
+        slug: 'first-post',
+        author: 'Me',
+        text: 'Some text',
     },
     {
         id: 8,
@@ -57,6 +78,9 @@ const dataBlogPosts: IPost[] = [
         image: '/images/posts/post-8.jpg',
         categories: ['Latest News'],
         date: 'Mart 29, 2019',
+        slug: 'first-post',
+        author: 'Me',
+        text: 'Some text',
     },
     {
         id: 9,
@@ -64,6 +88,9 @@ const dataBlogPosts: IPost[] = [
         image: '/images/posts/post-9.jpg',
         categories: ['New Arrivals'],
         date: 'February 10, 2019',
+        slug: 'first-post',
+        author: 'Me',
+        text: 'Some text',
     },
     {
         id: 10,
@@ -71,6 +98,9 @@ const dataBlogPosts: IPost[] = [
         image: '/images/posts/post-10.jpg',
         categories: ['Special Offers'],
         date: 'January 1, 2019',
+        slug: 'first-post',
+        author: 'Me',
+        text: 'Some text',
     },
 ];
 
