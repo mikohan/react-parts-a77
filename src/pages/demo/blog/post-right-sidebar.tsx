@@ -10,6 +10,7 @@ function Page(props: any) {
     return <BlogPagePost featuredImage sidebarPosition="end" post={props.post} />;
 }
 
+// This is not in use page but keep it for now adn delete later
 export async function getStaticProps() {
     const res = await Axios.get('http://localhost:8000/blog/posts/1/');
     const post: IPost = res.data;

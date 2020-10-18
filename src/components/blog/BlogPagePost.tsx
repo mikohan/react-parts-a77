@@ -19,7 +19,6 @@ interface Props {
 }
 
 function BlogPagePost(props: Props) {
-    console.log(props);
     const { featuredImage = false, sidebarPosition = false } = props;
 
     return (

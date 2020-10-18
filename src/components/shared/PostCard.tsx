@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import AppImage from '~/components/shared/AppImage';
 import AppLink from '~/components/shared/AppLink';
 import url from '~/services/url';
-import { IPost } from '~/interfaces/post';
+import { IPost, IBlogCategory } from '~/interfaces/post';
 
 export type IPostCardLayout = 'list' | 'grid' | 'grid-sm';
 
@@ -32,7 +32,7 @@ function PostCard(props: Props) {
             </div>
             <div className="post-card__content">
                 <div className="post-card__category">
-                    {post.categories.map((category, index) => (
+                    {post.categories.map((category: IBlogCategory, index: number) => (
                         <AppLink href="/" key={index}>
                             {category}
                         </AppLink>

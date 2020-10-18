@@ -12,10 +12,12 @@ import PostCard, { IPostCardLayout } from '~/components/shared/PostCard';
 import { IBlogPageLayout, IBlogPageSidebarPosition } from '~/interfaces/pages';
 // data
 import dataBlogPosts from '~/data/blogPosts';
+import { IPost } from '~/interfaces/post';
 
 interface Props {
     layout: IBlogPageLayout;
     sidebarPosition: IBlogPageSidebarPosition;
+    posts: IPost[];
 }
 
 const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
@@ -25,7 +27,7 @@ const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
 };
 
 function BlogPageCategory(props: Props) {
-    const { layout, sidebarPosition } = props;
+    const { layout, sidebarPosition, posts } = props;
     const [page, setPage] = useState(1);
 
     return (
@@ -59,12 +61,9 @@ function BlogPageCategory(props: Props) {
                                     })}
                                 >
                                     <div className="posts-list__body">
-                                        {dataBlogPosts.map((post, index) => (
+                                        {posts.map((post, index) => (
                                             <div key={index} className="posts-list__item">
-                                                <PostCard
-                                                    post={post}
-                                                    layout={cardLayoutMap[layout]}
-                                                />
+                                                <PostCard post={post} layout={cardLayoutMap[layout]} />
                                             </div>
                                         ))}
                                     </div>

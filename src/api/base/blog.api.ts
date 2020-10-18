@@ -1,6 +1,6 @@
 // application
 import { IBlogCategory } from '~/interfaces/category';
-import { IPost, MResponse } from '~/interfaces/post';
+import { IPost } from '~/interfaces/post';
 
 export interface IGetBlogCategoriesOptions {
     depth?: number;
@@ -8,6 +8,8 @@ export interface IGetBlogCategoriesOptions {
 
 export abstract class BlogApi {
     abstract getLatestPosts(limit: number): Promise<IPost[]>;
+
+    abstract getPostById(id: number | string): Promise<IPost>;
 
     abstract getCategories(options: IGetBlogCategoriesOptions): Promise<IBlogCategory[]>;
 }

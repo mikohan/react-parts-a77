@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // third-party
 import classNames from 'classnames';
 // application
@@ -13,8 +13,6 @@ import { ArrowRoundedLeft7x11Svg, ArrowRoundedRight7x11Svg } from '~/svg';
 import dataBlogComments from '~/data/blogComments';
 import dataBlogPosts from '~/data/blogPosts';
 
-import { FakeBlogApi } from '../../api/fake-api/fake-blog.api';
-
 import { IPost } from '~/interfaces/post';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,8 +25,6 @@ function Post(props: Props) {
     const { className, ...rootProps } = props;
 
     const rootClasses = classNames(className);
-
-    const blog = new FakeBlogApi();
 
     return (
         <div className={rootClasses} {...rootProps}>

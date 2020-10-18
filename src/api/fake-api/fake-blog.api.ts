@@ -9,6 +9,11 @@ import { IPost, MResponse } from '~/interfaces/post';
 import axios from 'axios';
 
 export class FakeBlogApi extends BlogApi {
+    getPostById(id: number): Promise<IPost> {
+        const promise = axios.get(`http://localhost:8000/blog/posts/${id}`);
+        const dataPromise = promise.then((response) => response.data);
+        return dataPromise;
+    }
     getLatestPosts(limit: number): Promise<IPost[]> {
         const promise = axios.get('http://localhost:8000/blog/posts/');
         const dataPromise = promise.then((response) => response.data.results);
