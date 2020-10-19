@@ -20,8 +20,8 @@ interface Props {
     posts: IPost[];
     page: number;
     setPage: any;
-    pagesCount: number;
-    currentPage: number | string;
+    pagesCount?: number;
+    currentPage?: number | string;
 }
 
 const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {

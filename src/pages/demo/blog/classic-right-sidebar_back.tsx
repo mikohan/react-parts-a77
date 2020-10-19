@@ -10,7 +10,14 @@ function Page(props: any) {
     const [page, setPage] = useState(1);
 
     return (
-        <BlogPageCategory layout="classic" sidebarPosition="end" posts={props.posts} page={page} setPage={setPage} />
+        <BlogPageCategory
+            layout="classic"
+            sidebarPosition="end"
+            posts={props.posts}
+            page={page}
+            setPage={setPage}
+            pagesCount={props.pagesCount}
+        />
     );
 }
 
