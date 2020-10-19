@@ -11,13 +11,15 @@ import Pagination from '~/components/shared/Pagination';
 import PostCard, { IPostCardLayout } from '~/components/shared/PostCard';
 import { IBlogPageLayout, IBlogPageSidebarPosition } from '~/interfaces/pages';
 // data
-import dataBlogPosts from '~/data/blogPosts';
+
 import { IPost } from '~/interfaces/post';
 
 interface Props {
     layout: IBlogPageLayout;
     sidebarPosition: IBlogPageSidebarPosition;
     posts: IPost[];
+    page: number;
+    setPage: any;
 }
 
 const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
@@ -27,8 +29,8 @@ const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
 };
 
 function BlogPageCategory(props: Props) {
-    const { layout, sidebarPosition, posts } = props;
-    const [page, setPage] = useState(1);
+    const { layout, sidebarPosition, posts, page, setPage } = props;
+    // const [page, setPage] = useState(1);
 
     return (
         <React.Fragment>

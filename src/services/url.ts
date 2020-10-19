@@ -51,6 +51,10 @@ const url = {
 
     // blog pages
     blog: () => '/demo/blog/classic-right-sidebar',
+    blogPage: (page: string | number) => ({
+        href: `/demo/blog/classic-right-sidebar/[page]?page=${page}`,
+        as: `/demo/blog/classic-right-sidebar/${page}`,
+    }),
     post: (post: IPost) => ({
         href: `/demo/blog/post-right-sidebar/[id]?id=${post.id}`,
         as: `/demo/blog/post-right-sidebar/${post.id}`,

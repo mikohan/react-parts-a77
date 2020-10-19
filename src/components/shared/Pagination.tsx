@@ -1,9 +1,11 @@
 // react
 import React from 'react';
+import AppLink from '~/components/shared/AppLink';
 // third-party
 import classNames from 'classnames';
 // application
 import { ArrowRoundedLeft7x11Svg, ArrowRoundedRight7x11Svg } from '~/svg';
+import url from '~/services/url';
 
 interface Props {
     siblings?: number;
@@ -13,12 +15,7 @@ interface Props {
 }
 
 function Pagination(props: Props) {
-    const {
-        siblings = 1,
-        current = 1,
-        total = 1,
-        onPageChange,
-    } = props;
+    const { siblings = 1, current = 1, total = 1, onPageChange } = props;
 
     const setPage = (value: number) => {
         if (value < 1 || value > total || value === current) {
@@ -65,16 +62,18 @@ function Pagination(props: Props) {
     return (
         <ul className="pagination">
             <li className={classNames('page-item', { disabled: current <= 1 })}>
-                <button
-                    type="button"
-                    className="page-link page-link--with-arrow"
-                    aria-label="Previous"
-                    onClick={() => setPage(current - 1)}
-                >
-                    <span className="page-link__arrow page-link__arrow--left" aria-hidden="true">
-                        <ArrowRoundedLeft7x11Svg />
-                    </span>
-                </button>
+                <AppLink href={url.blogPage(current - 1)}>
+                    <button
+                        type="button"
+                        className="page-link page-link--with-arrow"
+                        aria-label="Previous"
+                        onClick={() => setPage(current - 1)}
+                    >
+                        <span className="page-link__arrow page-link__arrow--left" aria-hidden="true">
+                            <ArrowRoundedLeft7x11Svg />
+                        </span>
+                    </button>
+                </AppLink>
             </li>
 
             {getPages().map((page) => (
@@ -85,9 +84,11 @@ function Pagination(props: Props) {
                             aria-current={page === current ? 'page' : undefined}
                         >
                             {page !== current && (
-                                <button type="button" className="page-link" onClick={() => setPage(page)}>
-                                    {page}
-                                </button>
+                                <AppLink href={url.blogPage(page)}>
+                                    <button type="button" className="page-link" onClick={() => setPage(page)}>
+                                        {page}
+                                    </button>
+                                </AppLink>
                             )}
                             {page === current && (
                                 <span className="page-link">
@@ -106,16 +107,18 @@ function Pagination(props: Props) {
             ))}
 
             <li className={classNames('page-item', { disabled: current >= total })}>
-                <button
-                    type="button"
-                    className="page-link page-link--with-arrow"
-                    aria-label="Next"
-                    onClick={() => setPage(current + 1)}
-                >
-                    <span className="page-link__arrow page-link__arrow--right" aria-hidden="true">
-                        <ArrowRoundedRight7x11Svg />
-                    </span>
-                </button>
+                <AppLink href={url.blogPage(current + 1)}>
+                    <button
+                        type="button"
+                        className="page-link page-link--with-arrow"
+                        aria-label="Next"
+                        onClick={() => setPage(current + 1)}
+                    >
+                        <span className="page-link__arrow page-link__arrow--right" aria-hidden="true">
+                            <ArrowRoundedRight7x11Svg />
+                        </span>
+                    </button>
+                </AppLink>
             </li>
         </ul>
     );

@@ -1,5 +1,5 @@
 // react
-import React from 'react';
+import React, { useState } from 'react';
 // application
 import BlogPageCategory from '~/components/blog/BlogPageCategory';
 
@@ -7,7 +7,12 @@ import { blogApi } from '~/api';
 import { IPost } from '~/interfaces/post';
 
 function Page(props: any) {
-    return <BlogPageCategory layout="classic" sidebarPosition="end" posts={props.posts} />;
+    const [page, setPage] = useState(1);
+
+    console.log('Console log page - ', page);
+    return (
+        <BlogPageCategory layout="classic" sidebarPosition="end" posts={props.posts} page={page} setPage={setPage} />
+    );
 }
 
 export async function getStaticProps() {
