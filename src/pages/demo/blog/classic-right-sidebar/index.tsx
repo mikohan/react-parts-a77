@@ -9,14 +9,13 @@ import { IPost } from '~/interfaces/post';
 function Page(props: any) {
     const [page, setPage] = useState(1);
 
-    console.log('Console log page - ', page);
     return (
         <BlogPageCategory layout="classic" sidebarPosition="end" posts={props.posts} page={page} setPage={setPage} />
     );
 }
 
 export async function getStaticProps() {
-    const res = await blogApi.getLatestPosts(-1);
+    const res = await blogApi.getAllPosts(1);
     const posts: IPost[] = res;
 
     return {

@@ -27,6 +27,18 @@ export class FakeBlogApi extends BlogApi {
         const dataPromise = promise.then((response) => response.data.results);
         return dataPromise;
     }
+    getAllPosts(page: number = 1): Promise<IPost[]> {
+        let lastPartOfUrl: string = '';
+        if (page === 1) {
+            lastPartOfUrl = '';
+        } else {
+            lastPartOfUrl = `?page=${page}`;
+        }
+
+        const promise = axios.get(`${blogBaseUrl}/${lastPartOfUrl}`);
+        const dataPromise = promise.then((response) => response.data.results);
+        return dataPromise;
+    }
 
     getCategories(options: IGetBlogCategoriesOptions): Promise<IBlogCategory[]> {
         return getBlogCategories(options);
