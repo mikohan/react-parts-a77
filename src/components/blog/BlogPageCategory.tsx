@@ -20,6 +20,7 @@ interface Props {
     posts: IPost[];
     page: number;
     setPage: any;
+    pagesCount: number;
 }
 
 const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
@@ -29,7 +30,7 @@ const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
 };
 
 function BlogPageCategory(props: Props) {
-    const { layout, sidebarPosition, posts, page, setPage } = props;
+    const { layout, sidebarPosition, posts, page, setPage, pagesCount } = props;
     // const [page, setPage] = useState(1);
 
     return (
@@ -71,7 +72,7 @@ function BlogPageCategory(props: Props) {
                                     </div>
                                 </div>
                                 <div className="posts-view__pagination">
-                                    <Pagination current={page} siblings={1} total={3} onPageChange={setPage} />
+                                    <Pagination current={page} siblings={1} total={pagesCount} onPageChange={setPage} />
                                 </div>
                             </div>
                         </div>

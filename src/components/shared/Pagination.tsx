@@ -12,6 +12,7 @@ interface Props {
     current?: number;
     total?: number;
     onPageChange?: (page: number) => void;
+    pagesCount?: number;
 }
 
 function Pagination(props: Props) {

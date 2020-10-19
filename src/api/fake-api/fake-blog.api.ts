@@ -8,6 +8,7 @@ import { IPost } from '~/interfaces/post';
 import { blogBaseUrl } from '~/config';
 
 import axios from 'axios';
+import { baseUrl } from '~/services/utils';
 
 export class FakeBlogApi extends BlogApi {
     getPostById(id: number): Promise<IPost> {
@@ -37,6 +38,13 @@ export class FakeBlogApi extends BlogApi {
 
         const promise = axios.get(`${blogBaseUrl}/${lastPartOfUrl}`);
         const dataPromise = promise.then((response) => response.data.results);
+        return dataPromise;
+    }
+
+    getBlogPageCount(): Promise<any> {
+        const promise = axios.get(`${blogBaseUrl}/`);
+        const dataPromise = promise.then((response) => response.data.count);
+
         return dataPromise;
     }
 

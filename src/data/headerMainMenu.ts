@@ -1,4 +1,6 @@
 // application
+import { url } from 'inspector';
+import AppUrl from '~/services/url';
 import { IMainMenuLink } from '~/interfaces/main-menu-link';
 
 const dataHeaderMainMenu: IMainMenuLink[] = [
@@ -161,46 +163,8 @@ const dataHeaderMainMenu: IMainMenuLink[] = [
     },
     {
         title: 'Blog',
-        url: '/demo/blog/classic-right-sidebar',
-        submenu: {
-            type: 'menu',
-            links: [
-                {
-                    title: 'Blog Classic',
-                    url: '/demo/blog/classic-right-sidebar',
-                    links: [
-                        { title: 'Left Sidebar', url: '/demo/blog/classic-left-sidebar' },
-                        { title: 'Right Sidebar', url: '/demo/blog/classic-right-sidebar' },
-                    ],
-                },
-                {
-                    title: 'Blog List',
-                    url: '/demo/blog/list-right-sidebar',
-                    links: [
-                        { title: 'Left Sidebar', url: '/demo/blog/list-left-sidebar' },
-                        { title: 'Right Sidebar', url: '/demo/blog/list-right-sidebar' },
-                    ],
-                },
-                {
-                    title: 'Blog Grid',
-                    url: '/demo/blog/grid-right-sidebar',
-                    links: [
-                        { title: 'Left Sidebar', url: '/demo/blog/grid-left-sidebar' },
-                        { title: 'Right Sidebar', url: '/demo/blog/grid-right-sidebar' },
-                    ],
-                },
-                {
-                    title: 'Post Page',
-                    url: '/demo/blog/post-full-width',
-                    links: [
-                        { title: 'Full Width', url: '/demo/blog/post-full-width' },
-                        { title: 'Left Sidebar', url: '/demo/blog/post-left-sidebar' },
-                        { title: 'Right Sidebar', url: '/demo/blog/post-right-sidebar' },
-                    ],
-                },
-                { title: 'Post Without Image', url: '/demo/blog/post-without-image' },
-            ],
-        },
+
+        url: AppUrl.blogPage(1),
     },
     {
         title: 'Account',
