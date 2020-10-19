@@ -8,9 +8,8 @@ import { IPost } from '~/interfaces/post';
 import { postsOnPage } from '~/config';
 
 function Page(props: any) {
-    console.log(props);
     const [page, setPage] = useState(1);
-    const pagesCount: number = props.PagesCount;
+    const { pagesCount, currentPage } = props;
 
     return (
         <BlogPageCategory
@@ -20,11 +19,13 @@ function Page(props: any) {
             page={page}
             setPage={setPage}
             pagesCount={pagesCount}
+            currentPage={currentPage}
         />
     );
 }
 
-export async function getStaticProps({ page }: any) {
+export async function getStaticProps(context: any) {
+    const { page } = context.params;
     const res = await blogApi.getAllPosts(page);
     const posts: IPost[] = res;
 
@@ -36,16 +37,8 @@ export async function getStaticProps({ page }: any) {
         props: {
             posts,
             pagesCount: pagesCount,
+            currentPage: page,
         },
-    };
-}
-
-interface IPaths {
-    paths: IPath[];
-}
-interface IPath {
-    params: {
-        page: string;
     };
 }
 
