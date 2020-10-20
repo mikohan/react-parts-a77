@@ -10,6 +10,7 @@ import PageTitle from '~/components/shared/PageTitle';
 import Pagination from '~/components/shared/Pagination';
 import PostCard, { IPostCardLayout } from '~/components/shared/PostCard';
 import { IBlogPageLayout, IBlogPageSidebarPosition } from '~/interfaces/pages';
+import url from '~/services/url';
 // data
 
 import { IPost } from '~/interfaces/post';
@@ -82,6 +83,7 @@ function BlogPageCategory(props: Props) {
                                         siblings={1}
                                         total={pagesCount}
                                         onPageChange={setPage}
+                                        urlTo="blogPage"
                                     />
                                 </div>
                             </div>

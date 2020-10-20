@@ -16,7 +16,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) 
     const id = typeof params?.id === 'string' ? params?.id : 1;
     const post = await blogApi.getPostById(id);
     const latestPosts = await blogApi.getLatestPosts(4);
-    console.log(latestPosts);
 
     return {
         props: {

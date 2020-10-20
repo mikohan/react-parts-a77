@@ -9,7 +9,8 @@ import { IOrder } from '~/interfaces/order';
 import { IPost } from '~/interfaces/post';
 import { IProduct } from '~/interfaces/product';
 
-const url = {
+const url: { [key: string]: any } = {
+    replace: (page: number) => '/',
     // common
     home: () => '/',
     category: (category: ICategory): IAppLinkHref => {

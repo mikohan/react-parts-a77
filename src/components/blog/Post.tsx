@@ -201,7 +201,7 @@ function Post(props: Props) {
                     <CommentsList className="comments-view__list" comments={dataBlogComments.items} />
 
                     <div className="comments-view__pagination">
-                        <Pagination current={1} siblings={2} total={3} />
+                        <Pagination current={1} siblings={2} total={3} urlTo="replace" />
                     </div>
                 </div>
             </div>

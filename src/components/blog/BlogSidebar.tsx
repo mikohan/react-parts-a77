@@ -16,14 +16,12 @@ import { ICategory } from '~/interfaces/category';
 
 import dataBlogWidgetComments from '~/data/blogWidgetComments';
 import { IPost } from '~/interfaces/post';
-import { getLatestPosts } from '~/fake-server/endpoints';
 
 interface Props {
     latestPosts?: IPost[];
 }
 
 function BlogSidebar(props: Props) {
-    console.log(props.latestPosts);
     const [categories, setCategories] = useState<ICategory[]>([]);
     const { latestPosts } = props;
     const comments = useMemo(() => dataBlogWidgetComments.slice(0, 3), []);

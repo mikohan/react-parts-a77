@@ -6,6 +6,7 @@ import classNames from 'classnames';
 // application
 import { ArrowRoundedLeft7x11Svg, ArrowRoundedRight7x11Svg } from '~/svg';
 import url from '~/services/url';
+import { Url } from 'url';
 
 interface Props {
     siblings?: number;
@@ -13,10 +14,11 @@ interface Props {
     total?: number;
     onPageChange?: (page: number) => void;
     pagesCount?: number;
+    urlTo: string;
 }
 
 function Pagination(props: Props) {
-    const { siblings = 1, current = 1, total = 1, onPageChange } = props;
+    const { siblings = 1, current = 1, total = 1, onPageChange, urlTo } = props;
 
     const setPage = (value: number) => {
         if (value < 1 || value > total || value === current) {
@@ -59,11 +61,12 @@ function Pagination(props: Props) {
 
         return pages;
     };
+    console.log(urlTo);
 
     return (
         <ul className="pagination">
             <li className={classNames('page-item', { disabled: current <= 1 })}>
-                <AppLink href={url.blogPage(current - 1)}>
+                <AppLink href={url[urlTo](current - 1)}>
                     <button
                         type="button"
                         className="page-link page-link--with-arrow"
@@ -85,7 +88,7 @@ function Pagination(props: Props) {
                             aria-current={page === current ? 'page' : undefined}
                         >
                             {page !== current && (
-                                <AppLink href={url.blogPage(page)}>
+                                <AppLink href={url['blogPage'](page)}>
                                     <button type="button" className="page-link" onClick={() => setPage(page)}>
                                         {page}
                                     </button>
@@ -108,7 +111,7 @@ function Pagination(props: Props) {
             ))}
 
             <li className={classNames('page-item', { disabled: current >= total })}>
-                <AppLink href={url.blogPage(current + 1)}>
+                <AppLink href={url['blogPage'](current + 1)}>
                     <button
                         type="button"
                         className="page-link page-link--with-arrow"
