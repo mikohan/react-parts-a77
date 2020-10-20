@@ -32,7 +32,6 @@ const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
 
 function BlogPageCategory(props: Props) {
     const { layout, sidebarPosition, posts, page, setPage, pagesCount, currentPage } = props;
-    console.log(typeof currentPage);
 
     let curPageToSend: number = currentPage ? +currentPage : +page;
 
@@ -88,7 +87,7 @@ function BlogPageCategory(props: Props) {
                         </div>
                         {sidebarPosition === 'end' && (
                             <div className="blog-view__item blog-view__item-sidebar">
-                                <BlogSidebar />
+                                <BlogSidebar posts={posts} />
                             </div>
                         )}
                     </div>

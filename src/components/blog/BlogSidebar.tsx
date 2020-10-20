@@ -13,12 +13,17 @@ import WidgetTags from '~/components/widgets/WidgetTags';
 import { blogApi } from '~/api';
 import { ICategory } from '~/interfaces/category';
 // data
-import dataBlogPosts from '~/data/blogPosts';
-import dataBlogWidgetComments from '~/data/blogWidgetComments';
 
-function BlogSidebar() {
+import dataBlogWidgetComments from '~/data/blogWidgetComments';
+import { IPost } from '~/interfaces/post';
+
+interface Props {
+    posts?: IPost[];
+}
+
+function BlogSidebar(props: Props) {
     const [categories, setCategories] = useState<ICategory[]>([]);
-    const posts = useMemo(() => dataBlogPosts.slice(0, 4), []);
+    const posts = useMemo(() => props.posts!.slice(0, 4), []);
     const comments = useMemo(() => dataBlogWidgetComments.slice(0, 3), []);
 
     useEffect(() => {
@@ -41,22 +46,11 @@ function BlogSidebar() {
         <React.Fragment>
             <WidgetSearch />
             <WidgetAboutUs />
-            <WidgetCategories
-                widgetTitle={<FormattedMessage id="HEADER_CATEGORIES" />}
-                categories={categories}
-            />
-            <WidgetPosts
-                widgetTitle="Latest Posts"
-                posts={posts}
-            />
+            <WidgetCategories widgetTitle={<FormattedMessage id="HEADER_CATEGORIES" />} categories={categories} />
+            <WidgetPosts widgetTitle="Latest Posts" posts={posts} />
             <WidgetNewsletter />
-            <WidgetComments
-                widgetTitle="Latest Comments"
-                comments={comments}
-            />
-            <WidgetTags
-                widgetTitle="Tags Cloud"
-            />
+            <WidgetComments widgetTitle="Latest Comments" comments={comments} />
+            <WidgetTags widgetTitle="Tags Cloud" />
         </React.Fragment>
     );
 }
