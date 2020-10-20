@@ -61,7 +61,6 @@ function Pagination(props: Props) {
 
         return pages;
     };
-    console.log(urlTo);
 
     return (
         <ul className="pagination">
