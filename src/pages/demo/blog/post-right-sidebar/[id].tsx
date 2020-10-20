@@ -8,24 +8,28 @@ import { GetServerSideProps } from 'next';
 import { blogApi } from '~/api';
 
 interface Props {
-    post: IPost | null;
+    post: IPost;
+    latestPosts: IPost[];
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {
-    const id = typeof params?.id === 'string' ? params?.id : null;
+    const id = typeof params?.id === 'string' ? params?.id : 1;
     const post = await blogApi.getPostById(id);
+    const latestPosts = await blogApi.getLatestPosts(4);
+    console.log(latestPosts);
 
     return {
         props: {
-            post: id ? post : null,
+            post: post,
+            latestPosts: latestPosts,
         },
     };
 };
 
 function Page(props: Props) {
-    const { post } = props;
+    const { post, latestPosts } = props;
 
-    return <BlogPagePost featuredImage sidebarPosition="end" post={post} />;
+    return <BlogPagePost featuredImage sidebarPosition="end" post={post} latestPosts={latestPosts} />;
 }
 
 export default Page;

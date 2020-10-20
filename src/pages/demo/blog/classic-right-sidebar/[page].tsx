@@ -9,7 +9,7 @@ import { postsOnPage } from '~/config';
 
 function Page(props: any) {
     const [page, setPage] = useState(1);
-    const { pagesCount, currentPage } = props;
+    const { pagesCount, currentPage, latestPosts } = props;
 
     return (
         <BlogPageCategory
@@ -20,6 +20,7 @@ function Page(props: any) {
             setPage={setPage}
             pagesCount={pagesCount}
             currentPage={currentPage}
+            latestPosts={latestPosts}
         />
     );
 }
@@ -33,11 +34,15 @@ export async function getStaticProps(context: any) {
     const postsCount: number = resCount;
     const pagesCount: number = Math.ceil(postsCount / postsOnPage);
 
+    const latestPosts = await blogApi.getLatestPosts(4);
+    console.log(latestPosts);
+
     return {
         props: {
             posts,
             pagesCount: pagesCount,
             currentPage: page,
+            latestPosts: latestPosts,
         },
     };
 }

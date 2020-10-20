@@ -8,11 +8,11 @@ import { IPost } from '~/interfaces/post';
 
 interface Props {
     widgetTitle?: React.ReactNode;
-    posts: IPost[];
+    latestPosts: IPost[];
 }
 
 function WidgetPosts(props: Props) {
-    const { widgetTitle, posts } = props;
+    const { widgetTitle, latestPosts } = props;
 
     return (
         <div className="card widget widget-posts">
@@ -22,7 +22,7 @@ function WidgetPosts(props: Props) {
                 </div>
             )}
             <ul className="widget-posts__list">
-                {posts.map((post, index) => (
+                {latestPosts.map((post, index) => (
                     <li key={index} className="widget-posts__item">
                         <div className="widget-posts__image">
                             <AppLink href={url.post(post)}>
@@ -31,9 +31,7 @@ function WidgetPosts(props: Props) {
                         </div>
                         <div className="widget-posts__info">
                             <div className="widget-posts__name">
-                                <AppLink href={url.post(post)}>
-                                    {post.title}
-                                </AppLink>
+                                <AppLink href={url.post(post)}>{post.title}</AppLink>
                             </div>
                             <div className="widget-posts__date">{post.date}</div>
                         </div>

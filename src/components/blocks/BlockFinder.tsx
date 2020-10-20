@@ -21,28 +21,31 @@ function BlockFinder() {
             return;
         }
 
-        router.push(
-            ...hrefToRouterArgs(url.products({
-                filters: {
-                    filter_vehicle: vehicle.id.toString(),
-                },
-            })),
-        ).then();
+        router
+            .push(
+                ...hrefToRouterArgs(
+                    url.products({
+                        filters: {
+                            filter_vehicle: vehicle.id.toString(),
+                        },
+                    })
+                )
+            )
+            .then();
     };
 
     return (
         <div className="block block-finder">
             <Decor className="block-finder__decor" type="bottom" />
-            <div
-                className="block-finder__image"
-                style={{ backgroundImage: `url(${baseUrl('/images/finder.jpg')})` }}
-            />
+            <div className="block-finder__image" style={{ backgroundImage: `url(${baseUrl('/images/finder.jpg')})` }} />
             <div className="block-finder__body container container--max--xl">
                 <div className="block-finder__title">
                     <FormattedMessage id="TEXT_BLOCK_FINDER_TITLE" />
                 </div>
                 <div className="block-finder__subtitle">
-                    <FormattedMessage id="TEXT_BLOCK_FINDER_SUBTITLE" />
+                    <h1>
+                        <FormattedMessage id="TEXT_BLOCK_FINDER_SUBTITLE" />
+                    </h1>
                 </div>
                 <form className="block-finder__form" onSubmit={onSubmit}>
                     <VehicleSelect className="block-finder__select" onVehicleChange={setVehicle} />

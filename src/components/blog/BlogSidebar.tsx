@@ -16,14 +16,16 @@ import { ICategory } from '~/interfaces/category';
 
 import dataBlogWidgetComments from '~/data/blogWidgetComments';
 import { IPost } from '~/interfaces/post';
+import { getLatestPosts } from '~/fake-server/endpoints';
 
 interface Props {
-    posts?: IPost[];
+    latestPosts?: IPost[];
 }
 
 function BlogSidebar(props: Props) {
+    console.log(props.latestPosts);
     const [categories, setCategories] = useState<ICategory[]>([]);
-    const posts = useMemo(() => props.posts!.slice(0, 4), []);
+    const { latestPosts } = props;
     const comments = useMemo(() => dataBlogWidgetComments.slice(0, 3), []);
 
     useEffect(() => {
@@ -47,7 +49,7 @@ function BlogSidebar(props: Props) {
             <WidgetSearch />
             <WidgetAboutUs />
             <WidgetCategories widgetTitle={<FormattedMessage id="HEADER_CATEGORIES" />} categories={categories} />
-            <WidgetPosts widgetTitle="Latest Posts" posts={posts} />
+            <WidgetPosts widgetTitle="Latest Posts" latestPosts={latestPosts} />
             <WidgetNewsletter />
             <WidgetComments widgetTitle="Latest Comments" comments={comments} />
             <WidgetTags widgetTitle="Tags Cloud" />

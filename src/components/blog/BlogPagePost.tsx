@@ -16,10 +16,11 @@ interface Props {
     featuredImage?: boolean;
     sidebarPosition?: IBlogPageSidebarPosition | false;
     post: IPost;
+    latestPosts?: IPost[];
 }
 
 function BlogPagePost(props: Props) {
-    const { featuredImage = false, sidebarPosition = false } = props;
+    const { featuredImage = false, sidebarPosition = false, latestPosts } = props;
 
     return (
         <React.Fragment>
@@ -68,13 +69,13 @@ function BlogPagePost(props: Props) {
                     <div className="post-view__body">
                         {sidebarPosition === 'start' && (
                             <div className="post-view__item post-view__item-sidebar">
-                                <BlogSidebar />
+                                <BlogSidebar latestPosts={latestPosts} />
                             </div>
                         )}
                         <Post className="post-view__item post-view__item-post" post={props.post} />
                         {sidebarPosition === 'end' && (
                             <div className="post-view__item post-view__item-sidebar">
-                                <BlogSidebar />
+                                <BlogSidebar latestPosts={latestPosts} />
                             </div>
                         )}
                     </div>

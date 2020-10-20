@@ -34,8 +34,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 interface Props extends AppProps {
     languageInitialProps: ILanguageProviderProps;
     Component: NextComponentType<NextPageContext, any> & {
-        Layout: ComponentType,
-    }
+        Layout: ComponentType;
+    };
 }
 
 function App(props: Props) {
@@ -108,10 +108,12 @@ function App(props: Props) {
 App.getInitialProps = async (context: AppContext) => {
     const dispatch = context.ctx.store.dispatch as AppDispatch;
 
-    await dispatch(optionsSetAll({
-        desktopHeaderVariant: config.desktopHeaderVariant,
-        mobileHeaderVariant: config.mobileHeaderVariant,
-    }));
+    await dispatch(
+        optionsSetAll({
+            desktopHeaderVariant: config.desktopHeaderVariant,
+            mobileHeaderVariant: config.mobileHeaderVariant,
+        })
+    );
 
     let language;
 
@@ -124,6 +126,7 @@ App.getInitialProps = async (context: AppContext) => {
     return {
         ...(await AppBase.getInitialProps(context)),
         languageInitialProps: await getLanguageInitialProps(language),
+        blogInitialProps: { testBlogRedux: 'valueOfTestBlogRedux' },
     };
 };
 

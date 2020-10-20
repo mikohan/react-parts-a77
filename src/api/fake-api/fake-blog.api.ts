@@ -11,7 +11,7 @@ import axios from 'axios';
 import { baseUrl } from '~/services/utils';
 
 export class FakeBlogApi extends BlogApi {
-    getPostById(id: number): Promise<IPost> {
+    getPostById(id: string | number): Promise<IPost> {
         const promise = axios.get(`${blogBaseUrl}/${id}`);
         const dataPromise = promise.then((response) => response.data);
         return dataPromise;
@@ -24,7 +24,7 @@ export class FakeBlogApi extends BlogApi {
             lastPartOfUrl = `?limit=${limit}`;
         }
 
-        const promise = axios.get(`${blogBaseUrl}/${lastPartOfUrl}`);
+        const promise = axios.get(`${blogBaseUrl}/posts/${lastPartOfUrl}`);
         const dataPromise = promise.then((response) => response.data.results);
         return dataPromise;
     }

@@ -16,7 +16,7 @@ import dataBlogPosts from '~/data/blogPosts';
 import { IPost } from '~/interfaces/post';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-    post: IPost;
+    post?: IPost;
 }
 
 function Post(props: Props) {

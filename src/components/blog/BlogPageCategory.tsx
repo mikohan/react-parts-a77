@@ -22,6 +22,7 @@ interface Props {
     setPage: any;
     pagesCount?: number;
     currentPage?: number | string;
+    latestPosts: IPost[];
 }
 
 const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
@@ -31,7 +32,7 @@ const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
 };
 
 function BlogPageCategory(props: Props) {
-    const { layout, sidebarPosition, posts, page, setPage, pagesCount, currentPage } = props;
+    const { layout, sidebarPosition, posts, page, setPage, pagesCount, currentPage, latestPosts } = props;
 
     let curPageToSend: number = currentPage ? +currentPage : +page;
 
@@ -87,7 +88,7 @@ function BlogPageCategory(props: Props) {
                         </div>
                         {sidebarPosition === 'end' && (
                             <div className="blog-view__item blog-view__item-sidebar">
-                                <BlogSidebar posts={posts} />
+                                <BlogSidebar latestPosts={latestPosts} />
                             </div>
                         )}
                     </div>
