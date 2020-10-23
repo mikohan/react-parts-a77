@@ -1,5 +1,5 @@
 // react
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // application
 import BlogPageCategory from '~/components/blog/BlogPageCategory';
 
@@ -9,18 +9,26 @@ import { postsOnPage } from '~/config';
 
 function Page(props: any) {
     const [page, setPage] = useState(1);
+
+    const [posts, setPosts] = useState(props.posts);
+
+    useEffect(() => {
+        setPosts(props.posts);
+    }, [props]);
+
     const { pagesCount, currentPage, latestPosts } = props;
 
     return (
         <BlogPageCategory
             layout="classic"
             sidebarPosition="end"
-            posts={props.posts}
+            posts={posts}
             page={page}
             setPage={setPage}
             pagesCount={pagesCount}
             currentPage={currentPage}
             latestPosts={latestPosts}
+            setPosts={setPosts}
         />
     );
 }
@@ -35,15 +43,15 @@ export async function getStaticProps(context: any) {
     const pagesCount: number = Math.ceil(postsCount / postsOnPage);
 
     const latestPosts = await blogApi.getLatestPosts(4);
-    console.log(latestPosts);
+    const props = {
+        posts,
+        pagesCount: pagesCount,
+        currentPage: page,
+        latestPosts: latestPosts,
+    };
 
     return {
-        props: {
-            posts,
-            pagesCount: pagesCount,
-            currentPage: page,
-            latestPosts: latestPosts,
-        },
+        props: props,
     };
 }
 

@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { ArrowRoundedLeft7x11Svg, ArrowRoundedRight7x11Svg } from '~/svg';
 import url from '~/services/url';
 import { Url } from 'url';
+import { IPost } from '~/store/blog/blogActions';
 
 interface Props {
     siblings?: number;
