@@ -51,7 +51,7 @@ const url: { [key: string]: any } = {
     trackOrder: () => '/track-order',
 
     // blog pages
-    blog: () => '/demo/blog/classic-right-sidebar/1',
+    blog: () => '/demo/blog/classic-right-sidebar',
     blogPage: (page: string | number) => ({
         href: `/demo/blog/classic-right-sidebar/[page]?page=${page}`,
         as: `/demo/blog/classic-right-sidebar/${page}`,

@@ -164,7 +164,8 @@ const dataHeaderMainMenu: IMainMenuLink[] = [
     {
         title: 'Blog',
 
-        url: AppUrl.blogPage(1),
+        // url: AppUrl.blogPage(1),
+        url: AppUrl.blog(),
     },
     {
         title: 'Account',
@@ -215,7 +216,7 @@ const dataHeaderMainMenu: IMainMenuLink[] = [
     },
     {
         title: 'Buy Theme',
-        url: 'https://themeforest.net/user/kos9/portfolio',
+        url: '',
         customFields: {
             anchorProps: {
                 target: '_blank',

@@ -10,6 +10,7 @@ import { blogApi } from '~/api';
 interface Props {
     post: IPost;
     latestPosts: IPost[];
+    setSearch(search: string): void;
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {

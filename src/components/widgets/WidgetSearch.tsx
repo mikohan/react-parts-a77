@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 // application
 import { Search20Svg } from '~/svg';
+import Router from 'next/router';
 
 interface Props {
     setSearch(search: string): void;
@@ -13,6 +14,25 @@ function WidgetSearch(props: Props) {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         props.setSearch(tmpSearch);
+
+        // ({
+        //     href: `/catalog/[slug]${category.layout === 'products' ? '/products' : ''}?slug=${category.slug}`,
+        //     as: `/catalog/${category.slug}${category.layout === 'products' ? '/products' : ''}`,
+        // }),
+
+        // {
+        //     pathname: '/demo/blog/classic-right-sidebar/1',
+        //     query: { search: tmpSearch },
+        // }
+
+        Router.push(
+            {
+                pathname: '/demo/blog/classic-right-sidebar',
+                query: { search: tmpSearch },
+            },
+            `/demo/blog/classic-right-sidebar/${tmpSearch}`,
+            { shallow: true }
+        );
     };
     const handleChange = (e: any) => {
         setTmpSearch(e.target.value);
