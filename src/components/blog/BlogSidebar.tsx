@@ -18,12 +18,13 @@ import dataBlogWidgetComments from '~/data/blogWidgetComments';
 import { IPost } from '~/interfaces/post';
 
 interface Props {
-    latestPosts?: IPost[];
+    latestPosts: IPost[];
+    setSearch(search: string): void;
 }
 
 function BlogSidebar(props: Props) {
     const [categories, setCategories] = useState<ICategory[]>([]);
-    const { latestPosts } = props;
+    const { latestPosts, setSearch } = props;
     const comments = useMemo(() => dataBlogWidgetComments.slice(0, 3), []);
 
     useEffect(() => {
@@ -44,7 +45,7 @@ function BlogSidebar(props: Props) {
 
     return (
         <React.Fragment>
-            <WidgetSearch />
+            <WidgetSearch setSearch={setSearch} />
             <WidgetAboutUs />
             <WidgetCategories widgetTitle={<FormattedMessage id="HEADER_CATEGORIES" />} categories={categories} />
             <WidgetPosts widgetTitle="Latest Posts" latestPosts={latestPosts} />

@@ -12,6 +12,11 @@ function Page(props: any) {
 
     const [posts, setPosts] = useState(props.posts);
 
+    // this is through component send props needs to refactor to redux or context
+    const [search, setSearch] = useState('');
+
+    console.log(search);
+
     useEffect(() => {
         setPosts(props.posts);
     }, [props]);
@@ -29,6 +34,7 @@ function Page(props: any) {
             currentPage={currentPage}
             latestPosts={latestPosts}
             setPosts={setPosts}
+            setSearch={setSearch}
         />
     );
 }

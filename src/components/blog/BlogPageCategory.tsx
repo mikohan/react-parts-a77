@@ -25,6 +25,7 @@ interface Props {
     currentPage?: number | string;
     latestPosts: IPost[];
     setPosts(posts: IPost[]): void;
+    setSearch(search: string): void;
 }
 
 const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
@@ -34,7 +35,18 @@ const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
 };
 
 function BlogPageCategory(props: Props) {
-    const { layout, sidebarPosition, posts, page, setPage, pagesCount, currentPage, latestPosts, setPosts } = props;
+    const {
+        layout,
+        sidebarPosition,
+        posts,
+        page,
+        setPage,
+        pagesCount,
+        currentPage,
+        latestPosts,
+        setPosts,
+        setSearch,
+    } = props;
 
     const handleClick = () => {
         console.log('Clicked herer');
@@ -66,7 +78,7 @@ function BlogPageCategory(props: Props) {
                     <div className="blog-view__body">
                         {sidebarPosition === 'start' && (
                             <div className="blog-view__item blog-view__item-sidebar">
-                                <BlogSidebar />
+                                <BlogSidebar setSearch={props.setSearch} latestPosts={props.latestPosts} />
                             </div>
                         )}
                         <div className="blog-view__item blog-view__item-posts">
@@ -99,7 +111,7 @@ function BlogPageCategory(props: Props) {
                         </div>
                         {sidebarPosition === 'end' && (
                             <div className="blog-view__item blog-view__item-sidebar">
-                                <BlogSidebar latestPosts={latestPosts} />
+                                <BlogSidebar latestPosts={latestPosts} setSearch={setSearch} />
                             </div>
                         )}
                     </div>
