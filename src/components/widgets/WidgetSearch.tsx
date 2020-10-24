@@ -14,16 +14,7 @@ function WidgetSearch(props: Props) {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         props.setSearch(tmpSearch);
-
-        // ({
-        //     href: `/catalog/[slug]${category.layout === 'products' ? '/products' : ''}?slug=${category.slug}`,
-        //     as: `/catalog/${category.slug}${category.layout === 'products' ? '/products' : ''}`,
-        // }),
-
-        // {
-        //     pathname: '/demo/blog/classic-right-sidebar/1',
-        //     query: { search: tmpSearch },
-        // }
+        setTmpSearch('');
 
         Router.push(
             {
@@ -44,6 +35,7 @@ function WidgetSearch(props: Props) {
                     className="widget-search__input"
                     type="search"
                     placeholder="Blog search..."
+                    value={tmpSearch}
                     onChange={handleChange}
                 />
                 <button type="submit" className="widget-search__button">

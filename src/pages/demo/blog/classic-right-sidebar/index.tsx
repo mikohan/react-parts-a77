@@ -22,11 +22,14 @@ function Page(props: any) {
 
     const getFiltredPosts = async (search: string) => {
         const res = await blogApi.getPostsSearch(search);
+
         return res;
     };
 
     useEffect(() => {
-        getFiltredPosts(search).then((res) => console.log(res, 'Posts here'));
+        getFiltredPosts(search).then((res) => {
+            setPosts(res);
+        });
     }, [search]);
 
     useEffect(() => {

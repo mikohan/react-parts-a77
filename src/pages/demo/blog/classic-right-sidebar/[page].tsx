@@ -19,7 +19,6 @@ function Page(props: any) {
     console.log(search, 'IN search var');
 
     const router = useRouter();
-    console.log(router, 'In router Query');
 
     // useEffect(() => {
     //     const { search } = router.query;
