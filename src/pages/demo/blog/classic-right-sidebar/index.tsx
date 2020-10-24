@@ -18,8 +18,6 @@ function Page(props: any) {
     // this is through component send props needs to refactor to redux or context
     const [search, setSearch] = useState('');
 
-    const router = useRouter();
-
     const getFiltredPosts = async (search: string) => {
         const res = await blogApi.getPostsSearch(search);
 
@@ -58,6 +56,8 @@ function Page(props: any) {
 
 export async function getStaticProps(context: any) {
     // const { page } = context.params;
+
+    console.log(context);
     const res = await blogApi.getAllPosts(1);
     const posts: IPost[] = res;
 

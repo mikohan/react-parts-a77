@@ -14,16 +14,26 @@ function WidgetSearch(props: Props) {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         props.setSearch(tmpSearch);
-        setTmpSearch('');
+        if (tmpSearch) {
+            Router.push(
+                {
+                    pathname: '/demo/blog/classic-right-sidebar',
+                    query: { search: tmpSearch },
+                },
 
-        Router.push(
-            {
-                pathname: '/demo/blog/classic-right-sidebar',
-                query: { search: tmpSearch },
-            },
-            `/demo/blog/classic-right-sidebar/${tmpSearch}`,
-            { shallow: true }
-        );
+                undefined,
+                { shallow: true }
+            );
+        } else {
+            Router.push(
+                '/demo/blog/classic-right-sidebar',
+
+                undefined,
+                { shallow: true }
+            );
+        }
+
+        setTmpSearch('');
     };
     const handleChange = (e: any) => {
         setTmpSearch(e.target.value);
