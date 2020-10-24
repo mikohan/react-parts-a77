@@ -8,6 +8,7 @@ import Head from 'next/head';
 import { blogApi } from '~/api';
 import { IPost } from '~/interfaces/post';
 import { postsOnPage } from '~/config';
+import Axios from 'axios';
 
 function Page(props: any) {
     const [page, setPage] = useState(1);
@@ -20,10 +21,10 @@ function Page(props: any) {
     const router = useRouter();
 
     const getFiltredPosts = async (search: string) => {
-        const res = await blogApi.getAllPosts(1);
-
+        const res = await blogApi.getPostsSearch(search);
         return res;
     };
+
     useEffect(() => {
         getFiltredPosts(search).then((res) => console.log(res, 'Posts here'));
     }, [search]);

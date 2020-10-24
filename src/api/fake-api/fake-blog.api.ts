@@ -41,6 +41,13 @@ export class FakeBlogApi extends BlogApi {
         return dataPromise;
     }
 
+    getPostsSearch(search: string): Promise<IPost[]> {
+        const promise = axios.get(`${blogBaseUrl}/search/?search=${search}`);
+        return promise.then((response) => {
+            return response.data.results;
+        });
+    }
+
     getBlogPageCount(): Promise<any> {
         const promise = axios.get(`${blogBaseUrl}/posts/`);
         const dataPromise = promise.then((response) => response.data.count);
