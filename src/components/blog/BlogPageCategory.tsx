@@ -59,9 +59,7 @@ function BlogPageCategory(props: Props) {
 
     return (
         <React.Fragment>
-            <PageTitle>
-                <span onClick={handleClick}>Latest News</span>
-            </PageTitle>
+            <PageTitle>Latest News</PageTitle>
 
             <span onClick={handleClick}>Latest News</span>
             <BlockHeader

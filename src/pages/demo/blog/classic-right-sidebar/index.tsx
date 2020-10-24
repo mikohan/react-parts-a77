@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 // application
 import BlogPageCategory from '~/components/blog/BlogPageCategory';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import { blogApi } from '~/api';
 import { IPost } from '~/interfaces/post';
@@ -15,7 +17,16 @@ function Page(props: any) {
     // this is through component send props needs to refactor to redux or context
     const [search, setSearch] = useState('');
 
-    console.log(search);
+    const router = useRouter();
+
+    const getFiltredPosts = async (search: string) => {
+        const res = await blogApi.getAllPosts(1);
+
+        return res;
+    };
+    useEffect(() => {
+        getFiltredPosts(search).then((res) => console.log(res, 'Posts here'));
+    }, [search]);
 
     useEffect(() => {
         setPosts(props.posts);
@@ -24,18 +35,20 @@ function Page(props: any) {
     const { pagesCount, currentPage, latestPosts } = props;
 
     return (
-        <BlogPageCategory
-            layout="classic"
-            sidebarPosition="end"
-            posts={posts}
-            page={page}
-            setPage={setPage}
-            pagesCount={pagesCount}
-            currentPage={currentPage}
-            latestPosts={latestPosts}
-            setPosts={setPosts}
-            setSearch={setSearch}
-        />
+        <React.Fragment>
+            <BlogPageCategory
+                layout="classic"
+                sidebarPosition="end"
+                posts={posts}
+                page={page}
+                setPage={setPage}
+                pagesCount={pagesCount}
+                currentPage={currentPage}
+                latestPosts={latestPosts}
+                setPosts={setPosts}
+                setSearch={setSearch}
+            />
+        </React.Fragment>
     );
 }
 

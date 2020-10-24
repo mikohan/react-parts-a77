@@ -6,6 +6,7 @@ import BlogPageCategory from '~/components/blog/BlogPageCategory';
 import { blogApi } from '~/api';
 import { IPost } from '~/interfaces/post';
 import { postsOnPage } from '~/config';
+import { useRouter } from 'next/router';
 
 function Page(props: any) {
     const [page, setPage] = useState(1);
@@ -15,7 +16,14 @@ function Page(props: any) {
     // this is through component send props needs to refactor to redux or context
     const [search, setSearch] = useState('');
 
-    console.log(search);
+    console.log(search, 'IN search var');
+
+    const router = useRouter();
+    console.log(router, 'In router Query');
+
+    // useEffect(() => {
+    //     const { search } = router.query;
+    // }, []);
 
     useEffect(() => {
         setPosts(props.posts);
