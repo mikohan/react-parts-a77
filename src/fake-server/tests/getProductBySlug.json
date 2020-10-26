@@ -1,0 +1,254 @@
+{
+    "id": 3,
+    "name": "Left Headlight Of Brandix Z54",
+    "excerpt": "\n                Many philosophical debates that began in ancient times are still debated today. In one general sense,\n                philosophy is associated with wisdom, intellectual culture and a search for knowledge.\n            ",
+    "description": "\n                <p>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum, diam non iaculis finibus,\n                    ipsum arcu sollicitudin dolor, ut cursus sapien sem sed purus. Donec vitae fringilla tortor, sed\n                    fermentum nunc. Suspendisse sodales turpis dolor, at rutrum dolor tristique id. Quisque pellentesque\n                    ullamcorper felis, eget gravida mi elementum a. Maecenas consectetur volutpat ante, sit amet molestie\n                    urna luctus in. Nulla eget dolor semper urna malesuada dictum. Duis eleifend pellentesque dui et\n                    finibus. Pellentesque dapibus dignissim augue. Etiam odio est, sodales ac aliquam id, iaculis eget\n                    lacus. Aenean porta, ante vitae suscipit pulvinar, purus dui interdum tellus, sed dapibus mi mauris\n                    vitae tellus.\n                </p>\n                <h4>Etiam lacus lacus mollis in mattis</h4>\n                <p>\n                    Praesent mattis eget augue ac elementum. Maecenas vel ante ut enim mollis accumsan. Vestibulum vel\n                    eros at mi suscipit feugiat. Sed tortor purus, vulputate et eros a, rhoncus laoreet orci. Proin sapien\n                    neque, commodo at porta in, vehicula eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et\n                    ultrices posuere cubilia Curae; Curabitur porta vulputate augue, at sollicitudin nisl molestie eget.\n                </p>\n                <p>\n                    Nunc sollicitudin, nunc id accumsan semper, libero nunc aliquet nulla, nec pretium ipsum risus ac\n                    neque. Morbi eu facilisis purus. Quisque mi tortor, cursus in nulla ut, laoreet commodo quam.\n                    Pellentesque et ornare sapien. In ac est tempus urna tincidunt finibus. Integer erat ipsum, tristique\n                    ac lobortis sit amet, dapibus sit amet purus. Nam sed lorem nisi. Vestibulum ultrices tincidunt turpis,\n                    sit amet fringilla odio scelerisque non.\n                </p>\n            ",
+    "slug": "left-headlight-of-brandix-z54",
+    "sku": "009-50078-Z",
+    "partNumber": "BDX-750Z370-S",
+    "stock": "in-stock",
+    "price": 349,
+    "compareAtPrice": 415,
+    "images": [
+      "/images/products/product-3-1.jpg",
+      "/images/products/product-3-2.jpg"
+    ],
+    "badges": [
+      "sale"
+    ],
+    "rating": 3,
+    "reviews": 14,
+    "availability": "in-stock",
+    "compatibility": "all",
+    "brand": {
+      "slug": "brandix",
+      "name": "Brandix",
+      "image": "",
+      "country": "JP"
+    },
+    "type": {
+      "slug": "default",
+      "name": "Default",
+      "attributeGroups": [
+        {
+          "name": "General",
+          "slug": "general",
+          "attributes": [
+            "speed",
+            "power-source",
+            "battery-cell-type",
+            "voltage",
+            "battery-capacity",
+            "material",
+            "engine-type"
+          ]
+        },
+        {
+          "name": "Dimensions",
+          "slug": "dimensions",
+          "attributes": [
+            "length",
+            "width",
+            "height"
+          ]
+        }
+      ]
+    },
+    "attributes": [
+      {
+        "name": "Speed",
+        "slug": "speed",
+        "featured": true,
+        "values": [
+          {
+            "name": "750 RPM",
+            "slug": "750-rpm"
+          }
+        ]
+      },
+      {
+        "name": "Power Source",
+        "slug": "power-source",
+        "featured": true,
+        "values": [
+          {
+            "name": "Cordless-Electric",
+            "slug": "cordless-electric"
+          }
+        ]
+      },
+      {
+        "name": "Battery Cell Type",
+        "slug": "battery-cell type",
+        "featured": true,
+        "values": [
+          {
+            "name": "Lithium",
+            "slug": "lithium"
+          }
+        ]
+      },
+      {
+        "name": "Voltage",
+        "slug": "voltage",
+        "featured": true,
+        "values": [
+          {
+            "name": "20 Volts",
+            "slug": "20-volts"
+          }
+        ]
+      },
+      {
+        "name": "Battery Capacity",
+        "slug": "battery-capacity",
+        "featured": true,
+        "values": [
+          {
+            "name": "2 Ah",
+            "slug": "2-ah"
+          }
+        ]
+      },
+      {
+        "name": "Material",
+        "slug": "material",
+        "featured": false,
+        "values": [
+          {
+            "name": "Aluminium",
+            "slug": "aluminium"
+          },
+          {
+            "name": "Plastic",
+            "slug": "plastic"
+          }
+        ]
+      },
+      {
+        "name": "Engine Type",
+        "slug": "engine-type",
+        "featured": false,
+        "values": [
+          {
+            "name": "Brushless",
+            "slug": "brushless"
+          }
+        ]
+      },
+      {
+        "name": "Length",
+        "slug": "length",
+        "featured": false,
+        "values": [
+          {
+            "name": "99 mm",
+            "slug": "99-mm"
+          }
+        ]
+      },
+      {
+        "name": "Width",
+        "slug": "width",
+        "featured": false,
+        "values": [
+          {
+            "name": "207 mm",
+            "slug": "207-mm"
+          }
+        ]
+      },
+      {
+        "name": "Height",
+        "slug": "height",
+        "featured": false,
+        "values": [
+          {
+            "name": "208 mm",
+            "slug": "208-mm"
+          }
+        ]
+      },
+      {
+        "name": "Color",
+        "slug": "color",
+        "featured": false,
+        "values": [
+          {
+            "name": "Red",
+            "slug": "red"
+          }
+        ]
+      }
+    ],
+    "options": [
+      {
+        "type": "default",
+        "slug": "material",
+        "name": "Material",
+        "values": [
+          {
+            "slug": "steel",
+            "name": "Steel"
+          },
+          {
+            "slug": "aluminium",
+            "name": "Aluminium"
+          },
+          {
+            "slug": "thorium",
+            "name": "Thorium"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "slug": "color",
+        "name": "Color",
+        "values": [
+          {
+            "slug": "white",
+            "name": "White",
+            "color": "#fff"
+          },
+          {
+            "slug": "yellow",
+            "name": "Yellow",
+            "color": "#ffd333"
+          },
+          {
+            "slug": "red",
+            "name": "Red",
+            "color": "#ff4040"
+          },
+          {
+            "slug": "blue",
+            "name": "Blue",
+            "color": "#4080ff"
+          }
+        ]
+      }
+    ],
+    "tags": [
+      "Brake Kit",
+      "Brandix",
+      "Filter",
+      "Bumper",
+      "Transmission",
+      "Hood"
+    ],
+    "categories": [
+      {
+        "id": 47,
+        "type": "shop",
+        "name": "Tools & Garage",
+        "slug": "tools-garage",
+        "image": "/images/categories/category-8.jpg",
+        "items": 106,
+        "parent": null,
+        "layout": "products",
+        "customFields": {}
+      }
+    ],
+    "customFields": {}
+  }

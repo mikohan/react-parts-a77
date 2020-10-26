@@ -42,11 +42,14 @@ function Departments(props: Props) {
         setCurrentItem(null);
     }, [setIsOpen, setCurrentItem]);
 
-    useGlobalMousedown((event) => {
-        if (rootRef.current && !rootRef.current.contains(event.target as HTMLElement)) {
-            setIsOpen(false);
-        }
-    }, [setIsOpen, rootRef]);
+    useGlobalMousedown(
+        (event) => {
+            if (rootRef.current && !rootRef.current.contains(event.target as HTMLElement)) {
+                setIsOpen(false);
+            }
+        },
+        [setIsOpen, rootRef]
+    );
 
     const classes = classNames('departments', {
         'departments--open': isOpen,
@@ -58,9 +61,7 @@ function Departments(props: Props) {
                 <span className="departments__button-icon">
                     <Menu16x12Svg />
                 </span>
-                <span className="departments__button-title">
-                    {label}
-                </span>
+                <span className="departments__button-title">{label}</span>
                 <span className="departments__button-arrow">
                     <ArrowRoundedDown9x6Svg />
                 </span>
@@ -83,11 +84,7 @@ function Departments(props: Props) {
                             });
 
                             return (
-                                <li
-                                    className={itemClasses}
-                                    key={index}
-                                    onMouseEnter={() => handleItemMouseEnter(item)}
-                                >
+                                <li className={itemClasses} key={index} onMouseEnter={() => handleItemMouseEnter(item)}>
                                     <AppLink
                                         className="departments__item-link"
                                         href={item.url}
@@ -122,7 +119,7 @@ function Departments(props: Props) {
                                 `departments__megamenu--size--${item.submenu.size}`,
                                 {
                                     'departments__megamenu--open': item === currentItem,
-                                },
+                                }
                             );
 
                             return (

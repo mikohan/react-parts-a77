@@ -36,12 +36,20 @@ import {
     getTopRatedProducts,
 } from '~/fake-server/endpoints';
 
+const showConsole = async (func: any, params: any) => {
+    const promise = await func(params);
+    console.log(promise);
+};
+
+// showConsole(getProductBySlug, 'left-headlight-of-brandix-z54');
+
 export class FakeShopApi implements ShopApi {
     getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
         return getCategoryBySlug(slug, options);
     }
 
     getCategories(options?: IGetCategoriesOptions): Promise<IShopCategory[]> {
+        console.log('fake shop api 45 line', getCategories(options));
         return getCategories(options);
     }
 
@@ -93,10 +101,7 @@ export class FakeShopApi implements ShopApi {
         return getLatestProducts(limit);
     }
 
-    getSearchSuggestions(
-        query: string,
-        options?: IGetSearchSuggestionsOptions,
-    ): Promise<IGetSearchSuggestionsResult> {
+    getSearchSuggestions(query: string, options?: IGetSearchSuggestionsOptions): Promise<IGetSearchSuggestionsResult> {
         return getSearchSuggestions(query, options);
     }
 
