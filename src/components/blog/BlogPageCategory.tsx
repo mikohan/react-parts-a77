@@ -1,5 +1,5 @@
 // react
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 // third-party
 import classNames from 'classnames';
 // application
@@ -10,7 +10,6 @@ import PageTitle from '~/components/shared/PageTitle';
 import Pagination from '~/components/shared/Pagination';
 import PostCard, { IPostCardLayout } from '~/components/shared/PostCard';
 import { IBlogPageLayout, IBlogPageSidebarPosition } from '~/interfaces/pages';
-import url from '~/services/url';
 // data
 
 import { IPost } from '~/interfaces/post';
@@ -35,23 +34,7 @@ const cardLayoutMap: Record<IBlogPageLayout, IPostCardLayout> = {
 };
 
 function BlogPageCategory(props: Props) {
-    const {
-        layout,
-        sidebarPosition,
-        posts,
-        page,
-        setPage,
-        pagesCount,
-        currentPage,
-        latestPosts,
-        setPosts,
-        setSearch,
-    } = props;
-
-    const handleClick = () => {
-        console.log('Clicked herer');
-        setPosts(posts.slice(0, 1));
-    };
+    const { layout, sidebarPosition, posts, page, setPage, pagesCount, currentPage, latestPosts, setSearch } = props;
 
     let curPageToSend: number = currentPage ? +currentPage : +page;
 
@@ -61,7 +44,6 @@ function BlogPageCategory(props: Props) {
         <React.Fragment>
             <PageTitle>Latest News</PageTitle>
 
-            <span onClick={handleClick}>Latest News</span>
             <BlockHeader
                 pageTitle="Latest News"
                 breadcrumb={[

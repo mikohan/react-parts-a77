@@ -8,7 +8,6 @@ import { IPost } from '~/interfaces/post';
 import { blogBaseUrl } from '~/config';
 
 import axios from 'axios';
-import { baseUrl } from '~/services/utils';
 
 export class FakeBlogApi extends BlogApi {
     getPostById(id: string | number): Promise<IPost> {
@@ -41,8 +40,13 @@ export class FakeBlogApi extends BlogApi {
         return dataPromise;
     }
 
-    getPostsSearch(search: string): Promise<IPost[]> {
-        const promise = axios.get(`${blogBaseUrl}/search/?search=${search}`);
+    getPostsSearch(search: string, queryType: string = 'search'): Promise<IPost[]> {
+        let url: string = `${blogBaseUrl}/search/?search=${search}`;
+
+        if (queryType === 'category') {
+            url = `${blogBaseUrl}/search/?category=${search}`;
+        }
+        const promise = axios.get(url);
         return promise.then((response) => {
             return response.data.results;
         });

@@ -6,30 +6,44 @@ import BlogPageCategory from '~/components/blog/BlogPageCategory';
 import { blogApi } from '~/api';
 import { IPost } from '~/interfaces/post';
 import { postsOnPage } from '~/config';
+import { useRouter } from 'next/router';
 
 function Page(props: any) {
     const [page, setPage] = useState(1);
+
+    const params = useRouter();
+
+    const category: string = params.query.category as string;
 
     const [posts, setPosts] = useState(props.posts);
 
     // this is through component send props needs to refactor to redux or context
     const [search, setSearch] = useState('');
 
-    const getFiltredPosts = async (search: string) => {
-        const res = await blogApi.getPostsSearch(search);
+    const getFiltredPosts = async (search: string, queryType: string = 'search') => {
+        const res = await blogApi.getPostsSearch(search, queryType);
 
         return res;
     };
 
-    useEffect(() => {
-        getFiltredPosts(search).then((res) => {
-            setPosts(res);
-        });
-    }, [search]);
-
-    useEffect(() => {
-        setPosts(props.posts);
-    }, [props]);
+    if (category) {
+        useEffect(() => {
+            getFiltredPosts(category, 'category').then((res) => {
+                setPosts(res);
+                setSearch('');
+            });
+        }, [category]);
+    } else if (search) {
+        useEffect(() => {
+            getFiltredPosts(search, 'search').then((res) => {
+                setPosts(res);
+            });
+        }, [search]);
+    } else {
+        useEffect(() => {
+            setPosts(props.posts);
+        }, [props]);
+    }
 
     const { pagesCount, currentPage, latestPosts } = props;
 
@@ -51,10 +65,9 @@ function Page(props: any) {
     );
 }
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps() {
     // const { page } = context.params;
 
-    console.log(context);
     const res = await blogApi.getAllPosts(1);
     const posts: IPost[] = res;
 

@@ -21,6 +21,10 @@ const url: { [key: string]: any } = {
         return '/';
     },
 
+    categoryBlog: (category: ICategory): IAppLinkHref => ({
+        href: `/demo/blog/classic-right-sidebar/?category=${category.id}`,
+    }),
+
     // shop pages
     shop: () => '/catalog',
     shopCategory: (category: IShopCategory): IAppLinkHref => ({

@@ -15,7 +15,7 @@ interface Props {
     total?: number;
     onPageChange?: (page: number) => void;
     pagesCount?: number;
-    urlTo: string;
+    urlTo?: string;
 }
 
 function Pagination(props: Props) {
@@ -66,18 +66,18 @@ function Pagination(props: Props) {
     return (
         <ul className="pagination">
             <li className={classNames('page-item', { disabled: current <= 1 })}>
-                <AppLink href={url[urlTo](current - 1)}>
-                    <button
-                        type="button"
-                        className="page-link page-link--with-arrow"
-                        aria-label="Previous"
-                        onClick={() => setPage(current - 1)}
-                    >
-                        <span className="page-link__arrow page-link__arrow--left" aria-hidden="true">
-                            <ArrowRoundedLeft7x11Svg />
-                        </span>
-                    </button>
-                </AppLink>
+                {/* <AppLink href={url[urlTo!](current - 1)}> */}
+                <button
+                    type="button"
+                    className="page-link page-link--with-arrow"
+                    aria-label="Previous"
+                    onClick={() => setPage(current - 1)}
+                >
+                    <span className="page-link__arrow page-link__arrow--left" aria-hidden="true">
+                        <ArrowRoundedLeft7x11Svg />
+                    </span>
+                </button>
+                {/* </AppLink> */}
             </li>
 
             {getPages().map((page) => (
@@ -88,6 +88,7 @@ function Pagination(props: Props) {
                             aria-current={page === current ? 'page' : undefined}
                         >
                             {page !== current && (
+                                // needs to refactor laterOn
                                 <AppLink href={url['blogPage'](page)}>
                                     <button type="button" className="page-link" onClick={() => setPage(page)}>
                                         {page}

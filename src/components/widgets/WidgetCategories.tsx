@@ -29,7 +29,7 @@ function WidgetCategories(props: Props) {
 
                     const render: RenderFilterFn = ({ toggle, setItemRef, setContentRef }) => (
                         <li className="widget-categories__item" ref={setItemRef}>
-                            <AppLink href={url.category(category)} className="widget-categories__link">
+                            <AppLink href={url.categoryBlog(category)} className="widget-categories__link">
                                 {category.name}
                             </AppLink>
                             {children.length > 0 && (
@@ -59,13 +59,7 @@ function WidgetCategories(props: Props) {
                         </li>
                     );
 
-                    return (
-                        <Collapse
-                            key={index}
-                            toggleClass="widget-categories__item--open"
-                            render={render}
-                        />
-                    );
+                    return <Collapse key={index} toggleClass="widget-categories__item--open" render={render} />;
                 })}
             </ul>
         </div>
