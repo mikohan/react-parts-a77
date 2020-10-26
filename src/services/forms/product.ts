@@ -40,31 +40,35 @@ export function useProductForm(product: IProduct | null) {
         prevSubmitCount.current = submitCount;
     }, [intl, submitCount, methods.errors]);
 
-    const [submit, submitInProgress] = useAsyncAction(async (data: IProductForm) => {
-        if (!product) {
-            return null;
-        }
-
-        const options: ICartItemOption[] = [];
-
-        Object.keys(data.options).forEach((optionSlug) => {
-            const option = product.options.find((x) => x.slug === optionSlug);
-
-            if (!option) {
-                return;
+    const [submit, submitInProgress] = useAsyncAction(
+        async (data: IProductForm) => {
+            if (!product) {
+                return null;
             }
 
-            const value = option.values.find((x) => x.slug === data.options[optionSlug]);
+            const options: ICartItemOption[] = [];
+            if (data.options) {
+                Object.keys(data.options).forEach((optionSlug) => {
+                    const option = product.options.find((x) => x.slug === optionSlug);
 
-            if (!value) {
-                return;
+                    if (!option) {
+                        return;
+                    }
+
+                    const value = option.values.find((x) => x.slug === data.options[optionSlug]);
+
+                    if (!value) {
+                        return;
+                    }
+
+                    options.push({ name: option.name, value: value.name });
+                });
             }
 
-            options.push({ name: option.name, value: value.name });
-        });
-
-        return cartAddItem(product, options, typeof data.quantity === 'number' ? data.quantity : 1);
-    }, [product, cartAddItem]);
+            return cartAddItem(product, options, typeof data.quantity === 'number' ? data.quantity : 1);
+        },
+        [product, cartAddItem]
+    );
 
     return {
         submit: useMemo(() => handleSubmit(submit), [handleSubmit, submit]),

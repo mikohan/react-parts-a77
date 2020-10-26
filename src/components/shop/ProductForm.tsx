@@ -14,12 +14,7 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
 }
 
 function ProductForm(props: Props) {
-    const {
-        options,
-        namespace,
-        className,
-        ...rootProps
-    } = props;
+    const { options, namespace, className, ...rootProps } = props;
     const { register } = useFormContext();
     const ns = useMemo(() => (namespace ? `${namespace}.` : ''), [namespace]);
 
@@ -37,7 +32,7 @@ function ProductForm(props: Props) {
                                         name={`${ns}${option.slug}`}
                                         className="input-radio-label__input"
                                         value={value.slug}
-                                        ref={register({ required: true })}
+                                        ref={register({ required: false })}
                                     />
 
                                     <span className="input-radio-label__title">{value.name}</span>
@@ -88,9 +83,7 @@ function ProductForm(props: Props) {
 
     return (
         <div className={rootClasses} {...rootProps}>
-            <div className="product-form__body">
-                {optionsTemplate}
-            </div>
+            <div className="product-form__body">{optionsTemplate}</div>
         </div>
     );
 }
