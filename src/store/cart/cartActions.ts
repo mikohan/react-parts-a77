@@ -18,12 +18,11 @@ import {
 export function cartAddItemSuccess(
     product: IProduct,
     options: ICartItemOption[] = [],
-    quantity = 1,
+    quantity = 1
 ): CartAddItemAction {
-    toast.success(globalIntl()?.formatMessage(
-        { id: 'TEXT_TOAST_PRODUCT_ADDED_TO_CART' },
-        { productName: product.name },
-    ));
+    toast.success(
+        globalIntl()?.formatMessage({ id: 'TEXT_TOAST_PRODUCT_ADDED_TO_CART' }, { productName: product.name })
+    );
 
     return {
         type: CART_ADD_ITEM,
@@ -50,39 +49,36 @@ export function cartUpdateQuantitiesSuccess(quantities: CartItemQuantity[]): Car
 export function cartAddItem(
     product: IProduct,
     options: ICartItemOption[] = [],
-    quantity = 1,
+    quantity = 1
 ): CartThunkAction<Promise<void>> {
     // sending request to server, timeout is used as a stub
-    return (dispatch) => (
+    return (dispatch) =>
         new Promise((resolve) => {
             setTimeout(() => {
                 dispatch(cartAddItemSuccess(product, options, quantity));
                 resolve();
             }, 250);
-        })
-    );
+        });
 }
 
 export function cartRemoveItem(itemId: number): CartThunkAction<Promise<void>> {
     // sending request to server, timeout is used as a stub
-    return (dispatch) => (
+    return (dispatch) =>
         new Promise((resolve) => {
             setTimeout(() => {
                 dispatch(cartRemoveItemSuccess(itemId));
                 resolve();
             }, 250);
-        })
-    );
+        });
 }
 
 export function cartUpdateQuantities(quantities: CartItemQuantity[]): CartThunkAction<Promise<void>> {
     // sending request to server, timeout is used as a stub
-    return (dispatch) => (
+    return (dispatch) =>
         new Promise((resolve) => {
             setTimeout(() => {
                 dispatch(cartUpdateQuantitiesSuccess(quantities));
                 resolve();
             }, 250);
-        })
-    );
+        });
 }

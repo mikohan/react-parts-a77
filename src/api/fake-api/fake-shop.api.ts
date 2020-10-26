@@ -41,7 +41,7 @@ const showConsole = async (func: any, params: any) => {
     console.log(promise);
 };
 
-showConsole(getProductBySlug, 'left-headlight-of-brandix-z54');
+// showConsole(getProductBySlug, 'left-headlight-of-brandix-z54');
 
 export class FakeShopApi implements ShopApi {
     getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
@@ -49,7 +49,6 @@ export class FakeShopApi implements ShopApi {
     }
 
     getCategories(options?: IGetCategoriesOptions): Promise<IShopCategory[]> {
-        console.log('fake shop api 45 line', getCategories(options));
         return getCategories(options);
     }
 
