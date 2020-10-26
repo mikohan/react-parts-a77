@@ -2,13 +2,10 @@
 import React, { useEffect, useState } from 'react';
 // application
 import BlogPageCategory from '~/components/blog/BlogPageCategory';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
 
 import { blogApi } from '~/api';
 import { IPost } from '~/interfaces/post';
 import { postsOnPage } from '~/config';
-import Axios from 'axios';
 
 function Page(props: any) {
     const [page, setPage] = useState(1);
