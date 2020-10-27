@@ -226,7 +226,7 @@ function ShopPageProduct(props: Props) {
                         <Controller
                             name="quantity"
                             rules={{
-                                required: false,
+                                required: true,
                             }}
                             render={({ value, onChange, onBlur }) => (
                                 <InputNumber size="lg" min={1} value={value} onChange={onChange} onBlur={onBlur} />
@@ -361,7 +361,7 @@ function ShopPageProduct(props: Props) {
                                             {featuredAttributes.length > 0 && (
                                                 <div className="product__features">
                                                     <div className="product__features-title">
-                                                        <FormattedMessage id="TEXT_KEY_FEATURES" />: product-form
+                                                        <FormattedMessage id="TEXT_KEY_FEATURES" />:
                                                     </div>
                                                     <ul>
                                                         {featuredAttributes.map((attribute, index) => (
@@ -393,8 +393,7 @@ function ShopPageProduct(props: Props) {
 
                                                 {product.options.length > 0 && (
                                                     <ProductForm
-                                                        options={product.options} // Here is add options to product
-                                                        // if not empty arrray
+                                                        options={product.options}
                                                         className="product__form"
                                                         namespace="options"
                                                     />
@@ -409,7 +408,7 @@ function ShopPageProduct(props: Props) {
                                         {shopFeatures}
                                     </div>
 
-                                    <ProductTabs className="product__tabs" product={product} layout={layout} />
+                                    {/* <ProductTabs className="product__tabs" product={product} layout={layout} /> */}
                                 </div>
                             </div>
 
