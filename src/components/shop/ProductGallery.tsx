@@ -1,10 +1,5 @@
 // react
-import React, {
-    useCallback,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 // third-party
 import classNames from 'classnames';
 import PhotoSwipe from 'photoswipe';
@@ -20,7 +15,7 @@ import { ZoomIn24Svg } from '~/svg';
 
 type CreateGalleryFn = (
     images: PhotoSwipe.Item[],
-    options: PhotoSwipe.Options,
+    options: PhotoSwipe.Options
 ) => PhotoSwipe<PhotoSwipeUIDefault.Options>;
 
 export type IProductGalleryLayout = 'product-sidebar' | 'product-full' | 'quickview';
@@ -89,12 +84,7 @@ const slickSettingsThumbnails: Record<IProductGalleryLayout, ISlickProps> = {
 };
 
 function ProductGallery(props: Props) {
-    const {
-        images,
-        layout,
-        className,
-        ...rootProps
-    } = props;
+    const { images, layout, className, ...rootProps } = props;
     const direction = useDirection();
     const [state, setState] = useState({ currentIndex: 0, transition: false });
     const imagesRefs = useRef<Array<HTMLImageElement | null>>([]);
@@ -104,14 +94,17 @@ function ProductGallery(props: Props) {
     const getIndexDependOnDirRef = useRef<((index: number) => number) | null>(null);
     const unmountedRef = useRef(false);
 
-    const getIndexDependOnDir = useCallback((index: number) => {
-        // we need to invert index id direction === 'rtl' due to react-slick bug
-        if (direction === 'rtl') {
-            return images.length - 1 - index;
-        }
+    const getIndexDependOnDir = useCallback(
+        (index: number) => {
+            // we need to invert index id direction === 'rtl' due to react-slick bug
+            if (direction === 'rtl') {
+                return images.length - 1 - index;
+            }
 
-        return index;
-    }, [direction, images]);
+            return index;
+        },
+        [direction, images]
+    );
 
     const openPhotoswipe = (index: number) => {
         if (!createGalleryRef.current) {
@@ -181,10 +174,7 @@ function ProductGallery(props: Props) {
             galleryRef.current = createGallery(items, options);
             galleryRef.current.listen('beforeChange', () => {
                 if (galleryRef.current && slickFeaturedRef.current) {
-                    slickFeaturedRef.current.slickGoTo(
-                        galleryRef.current.getCurrentIndex(),
-                        true,
-                    );
+                    slickFeaturedRef.current.slickGoTo(galleryRef.current.getCurrentIndex(), true);
                 }
             });
             galleryRef.current.listen('destroy', () => {
@@ -307,9 +297,11 @@ function ProductGallery(props: Props) {
                                 <AppImage
                                     className="image__tag"
                                     src={image}
-                                    ref={(element) => { imagesRefs.current[index] = element; }}
-                                    data-width="700"
-                                    data-height="700"
+                                    ref={(element) => {
+                                        imagesRefs.current[index] = element;
+                                    }}
+                                    // data-width="700"
+                                    // data-height="700"
                                 />
                             </AppLink>
                         </div>

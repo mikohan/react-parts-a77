@@ -8,6 +8,7 @@ import { IOrder } from '~/interfaces/order';
 import { IProductsList, IProduct } from '~/interfaces/product';
 import { IReview } from '~/interfaces/review';
 import { IShopCategory } from '~/interfaces/category';
+import axios from 'axios';
 import {
     IAddProductReviewData,
     ICheckoutData,
@@ -36,12 +37,11 @@ import {
     getTopRatedProducts,
 } from '~/fake-server/endpoints';
 
-const showConsole = async (func: any, params: any) => {
-    const promise = await func(params);
-    console.log(promise);
+const showConsole: any = (func: any, params: any) => {
+    return func(params);
 };
 
-// showConsole(getProductBySlug, 'left-headlight-of-brandix-z54');
+// showConsole(getProductBySlug, 'second-product-hyundai');
 
 export class FakeShopApi implements ShopApi {
     getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
@@ -60,8 +60,11 @@ export class FakeShopApi implements ShopApi {
         return getProductsList(options, filters);
     }
 
-    getProductBySlug(slug: string): Promise<IProduct> {
+    async getProductBySlug(slug: string): Promise<IProduct> {
         return getProductBySlug(slug);
+        // const promise = await axios.get(`http://localhost:8000/api/product/red/singleproduct/${slug}/`);
+
+        // return promise.data;
     }
 
     getProductReviews(productId: number, options?: IListOptions): Promise<IReviewsList> {
