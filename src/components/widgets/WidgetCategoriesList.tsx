@@ -19,6 +19,8 @@ interface Props {
 function WidgetCategoriesList(props: Props) {
     const { categories } = props;
 
+    console.log('in side category widget', categories);
+
     const renderCategory: RenderFn = ({ toggle, setItemRef, setContentRef }, category: ICategory) => {
         const subs: ICategory[] = category.children || [];
 
@@ -29,10 +31,7 @@ function WidgetCategoriesList(props: Props) {
                     'widget-categories-list__root-item--has-children': category.children?.length,
                 })}
             >
-                <AppLink
-                    href={url.category(category)}
-                    className="widget-categories-list__root-link"
-                >
+                <AppLink href={url.category(category)} className="widget-categories-list__root-link">
                     {category.name}
                 </AppLink>
 
@@ -40,10 +39,7 @@ function WidgetCategoriesList(props: Props) {
                     <ul className="widget-categories-list__child">
                         {subs.slice(0, subs.length > 6 ? 5 : 6).map((sub, subIdx) => (
                             <li key={subIdx} className="widget-categories-list__child-item">
-                                <AppLink
-                                    href={url.category(sub)}
-                                    className="widget-categories-list__child-link"
-                                >
+                                <AppLink href={url.category(sub)} className="widget-categories-list__child-link">
                                     {sub.name}
                                 </AppLink>
                             </li>
@@ -55,27 +51,19 @@ function WidgetCategoriesList(props: Props) {
                     <React.Fragment>
                         <ul className="widget-categories-list__child" ref={setContentRef}>
                             {subs.slice(5).map((sub, subIdx) => (
-                                <li
-                                    key={subIdx}
-                                    className="widget-categories-list__child-item"
-                                >
-                                    <AppLink
-                                        href={url.category(sub)}
-                                        className="widget-categories-list__child-link"
-                                    >
+                                <li key={subIdx} className="widget-categories-list__child-item">
+                                    <AppLink href={url.category(sub)} className="widget-categories-list__child-link">
                                         {sub.name}
                                     </AppLink>
                                 </li>
                             ))}
                         </ul>
-                        <button
-                            type="button"
-                            className="widget-categories-list__show-more"
-                            onClick={toggle}
-                        >
+                        <button type="button" className="widget-categories-list__show-more" onClick={toggle}>
                             <span className="widget-categories-list__show-more-expand-text">Show More</span>
                             <span className="widget-categories-list__show-more-collapse-text">Show Less</span>
-                            <span className="widget-categories-list__show-more-arrow"><ArrowDown9x6Svg /></span>
+                            <span className="widget-categories-list__show-more-arrow">
+                                <ArrowDown9x6Svg />
+                            </span>
                         </button>
                     </React.Fragment>
                 )}
