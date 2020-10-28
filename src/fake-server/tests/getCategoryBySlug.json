@@ -1,0 +1,20 @@
+{
+  "id": 2,
+  "type": "shop",
+  "name": "Turn Signals",
+  "slug": "turn-signals",
+  "image": null,
+  "parent": {
+    "id": 1,
+    "type": "shop",
+    "name": "Headlights & Lighting",
+    "slug": "headlights-lighting",
+    "image": "/images/categories/category-1.jpg",
+    "items": 131,
+    "parent": null,
+    "layout": "products",
+    "customFields": {}
+  },
+  "layout": "products",
+  "customFields": {}
+}

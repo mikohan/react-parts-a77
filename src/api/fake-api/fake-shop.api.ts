@@ -28,7 +28,6 @@ import {
     getLatestProducts,
     getPopularProducts,
     getProductAnalogs,
-    getProductBySlug,
     getProductReviews,
     getProductsList,
     getRelatedProducts,
@@ -40,10 +39,14 @@ import {
 import { productSingleSlug } from '~/config';
 
 const showConsole: any = (func: any, params: any) => {
-    return func(params);
+    if (!params) {
+        return func().then((res: any) => console.log(res), 'in bare function');
+    }
+    return func(params).then((res: any) => console.log(res, ` with slug:${params}`));
 };
 
-// showConsole(getProductBySlug, 'second-product-hyundai');
+// showConsole(getCategoryBySlug, 'fuel-pumps');
+// showConsole(getCategories, null);
 
 export class FakeShopApi implements ShopApi {
     getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
