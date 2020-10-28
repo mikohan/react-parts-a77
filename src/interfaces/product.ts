@@ -100,6 +100,7 @@ export interface IProduct {
     attributes: IProductAttribute[];
     options: IProductOption[];
     customFields?: ICustomFields;
+    name2: string;
 }
 
 export type IProductsList = IPaginatedList<IProduct> & IFilterableList<IProduct>;

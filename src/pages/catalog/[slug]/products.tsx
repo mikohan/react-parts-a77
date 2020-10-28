@@ -10,13 +10,8 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
 });
 
 function Page() {
-    return (
-        <ShopPageShop
-            layout="grid"
-            gridLayout="grid-4-sidebar"
-            sidebarPosition="start"
-        />
-    );
+    console.log('in catalog/products.tsx');
+    return <ShopPageShop layout="grid" gridLayout="grid-4-sidebar" sidebarPosition="start" />;
 }
 
 export default Page;

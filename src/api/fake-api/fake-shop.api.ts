@@ -28,7 +28,6 @@ import {
     getLatestProducts,
     getPopularProducts,
     getProductAnalogs,
-    getProductBySlug,
     getProductReviews,
     getProductsList,
     getRelatedProducts,
@@ -37,11 +36,17 @@ import {
     getTopRatedProducts,
 } from '~/fake-server/endpoints';
 
+import { productSingleSlug } from '~/config';
+
 const showConsole: any = (func: any, params: any) => {
-    return func(params);
+    if (!params) {
+        return func().then((res: any) => console.log(res), 'in bare function');
+    }
+    return func(params).then((res: any) => console.log(res, ` with slug:${params}`));
 };
 
-// showConsole(getProductBySlug, 'second-product-hyundai');
+// showConsole(getCategoryBySlug, 'fuel-pumps');
+// showConsole(getCategories, null);
 
 export class FakeShopApi implements ShopApi {
     getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
@@ -61,10 +66,10 @@ export class FakeShopApi implements ShopApi {
     }
 
     async getProductBySlug(slug: string): Promise<IProduct> {
-        return getProductBySlug(slug);
-        // const promise = await axios.get(`http://localhost:8000/api/product/red/singleproduct/${slug}/`);
-
-        // return promise.data;
+        // return getProductBySlug(slug);
+        const url: string = `${productSingleSlug}/${slug}/`;
+        const promise = await axios.get(url);
+        return promise.data;
     }
 
     getProductReviews(productId: number, options?: IListOptions): Promise<IReviewsList> {

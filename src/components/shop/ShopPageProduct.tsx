@@ -302,7 +302,7 @@ function ShopPageProduct(props: Props) {
 
     return (
         <React.Fragment>
-            <PageTitle>{product.name}</PageTitle>
+            <PageTitle>{`${product.name} ${product.name2}`}</PageTitle>
 
             <BlockHeader breadcrumb={breadcrumb} />
 
@@ -328,7 +328,7 @@ function ShopPageProduct(props: Props) {
                                     />
 
                                     <div className="product__header">
-                                        <h1 className="product__title">{product.name}</h1>
+                                        <h1 className="product__title">{`${product.name} ${product.name2}`}</h1>
 
                                         <div className="product__subtitle">
                                             <div className="product__rating">
@@ -408,7 +408,7 @@ function ShopPageProduct(props: Props) {
                                         {shopFeatures}
                                     </div>
 
-                                    {/* <ProductTabs className="product__tabs" product={product} layout={layout} /> */}
+                                    <ProductTabs className="product__tabs" product={product} layout={layout} />
                                 </div>
                             </div>
 

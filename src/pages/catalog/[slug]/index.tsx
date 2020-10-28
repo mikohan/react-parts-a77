@@ -37,13 +37,7 @@ function Page(props: Props) {
         return <SitePageNotFound />;
     }
 
-    return (
-        <ShopPageCategory
-            layout="columns-4-sidebar"
-            category={category}
-            subcategories={subcategories}
-        />
-    );
+    return <ShopPageCategory layout="columns-4-sidebar" category={category} subcategories={subcategories} />;
 }
 
 export default Page;
