@@ -38,22 +38,15 @@ import {
 
 import { productSingleSlug } from '~/config';
 
-const showConsole: any = (func: any, params: any) => {
-    if (!params) {
-        return func().then((res: any) => console.log(res), 'in bare function');
-    }
-    return func(params).then((res: any) => console.log(res, ` with slug:${params}`));
-};
-
-// showConsole(getCategoryBySlug, 'fuel-pumps');
-// showConsole(getCategories, null);
-
 export class FakeShopApi implements ShopApi {
     getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
         return getCategoryBySlug(slug, options);
     }
 
-    getCategories(options?: IGetCategoriesOptions): Promise<IShopCategory[]> {
+    async getCategories(options?: IGetCategoriesOptions): Promise<IShopCategory[]> {
+        // const promise = axios.get('http://localhost:8000/testcategory/categories/');
+        // const dataPromise = promise.then((res: any) => res.data);
+        // return dataPromise;
         return getCategories(options);
     }
 
@@ -116,3 +109,15 @@ export class FakeShopApi implements ShopApi {
         return checkout(data);
     }
 }
+
+const showConsole: any = (func: any, params: any) => {
+    if (!params) {
+        return func().then((res: any) => console.log(res), 'in bare function');
+    }
+    return func(params).then((res: any) => console.log(res, ` with slug:${params}`));
+};
+
+// showConsole(getCategoryBySlug, 'fuel-pumps');
+const api = new FakeShopApi();
+
+// showConsole(api.getCategories, null);

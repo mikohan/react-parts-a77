@@ -16,7 +16,8 @@ import {
     ShopFetchCategorySuccessAction,
     ShopFetchProductsListStartAction,
     ShopFetchProductsListSuccessAction,
-    ShopInitAction, ShopResetFilterAction,
+    ShopInitAction,
+    ShopResetFilterAction,
     ShopResetFiltersAction,
     ShopSetFilterValueAction,
     ShopSetOptionValueAction,
@@ -29,7 +30,7 @@ let cancelPreviousProductsListRequest = () => {};
 export function shopInit(
     categorySlug: string | null,
     options: IListOptions = {},
-    filters: IFilterValues = {},
+    filters: IFilterValues = {}
 ): ShopInitAction {
     return {
         type: SHOP_INIT,
@@ -93,7 +94,9 @@ export function shopFetchCategoryThunk(categorySlug: string | null): ShopThunkAc
         let canceled = false;
 
         cancelPreviousCategoryRequest();
-        cancelPreviousCategoryRequest = () => { canceled = true; };
+        cancelPreviousCategoryRequest = () => {
+            canceled = true;
+        };
 
         let request: Promise<IShopCategory | null>;
 
@@ -118,7 +121,9 @@ export function shopFetchProductsListThunk(): ShopThunkAction<Promise<void>> {
         let canceled = false;
 
         cancelPreviousProductsListRequest();
-        cancelPreviousProductsListRequest = () => { canceled = true; };
+        cancelPreviousProductsListRequest = () => {
+            canceled = true;
+        };
 
         dispatch(shopFetchProductsListStart());
 
@@ -171,14 +176,11 @@ export function shopResetFilterThunk(activeFilter: IActiveFilter): ShopThunkActi
 export function shopInitThunk(
     categorySlug: string | null,
     options: IListOptions = {},
-    filters: IFilterValues = {},
+    filters: IFilterValues = {}
 ): ShopThunkAction<Promise<void>> {
     return async (dispatch) => {
         dispatch(shopInit(categorySlug, options, filters));
 
-        await Promise.all([
-            dispatch(shopFetchCategoryThunk(categorySlug)),
-            dispatch(shopFetchProductsListThunk()),
-        ]);
+        await Promise.all([dispatch(shopFetchCategoryThunk(categorySlug)), dispatch(shopFetchProductsListThunk())]);
     };
 }

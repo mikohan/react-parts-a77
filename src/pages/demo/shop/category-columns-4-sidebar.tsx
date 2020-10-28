@@ -20,12 +20,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => ({
 function Page(props: Props) {
     const { subcategories } = props;
 
-    return (
-        <ShopPageCategory
-            layout="columns-4-sidebar"
-            subcategories={subcategories}
-        />
-    );
+    console.log(subcategories);
+
+    return <ShopPageCategory layout="columns-4-sidebar" subcategories={subcategories} />;
 }
 
 export default Page;
