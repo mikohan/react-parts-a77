@@ -61,10 +61,10 @@ export class FakeShopApi implements ShopApi {
     }
 
     async getProductBySlug(slug: string): Promise<IProduct> {
-        return getProductBySlug(slug);
-        // const promise = await axios.get(`http://localhost:8000/api/product/red/singleproduct/${slug}/`);
+        // return getProductBySlug(slug);
+        const promise = await axios.get(`http://localhost:8000/api/product/red/singleproduct/${slug}/`);
 
-        // return promise.data;
+        return promise.data;
     }
 
     getProductReviews(productId: number, options?: IListOptions): Promise<IReviewsList> {

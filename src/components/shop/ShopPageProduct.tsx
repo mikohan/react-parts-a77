@@ -302,7 +302,7 @@ function ShopPageProduct(props: Props) {
 
     return (
         <React.Fragment>
-            <PageTitle>{product.name}</PageTitle>
+            <PageTitle>{`${product.name} ${product.name2}`}</PageTitle>
 
             <BlockHeader breadcrumb={breadcrumb} />
 
