@@ -37,6 +37,8 @@ import {
     getTopRatedProducts,
 } from '~/fake-server/endpoints';
 
+import { productSingleSlug } from '~/config';
+
 const showConsole: any = (func: any, params: any) => {
     return func(params);
 };
@@ -62,8 +64,8 @@ export class FakeShopApi implements ShopApi {
 
     async getProductBySlug(slug: string): Promise<IProduct> {
         // return getProductBySlug(slug);
-        const promise = await axios.get(`http://localhost:8000/api/product/red/singleproduct/${slug}/`);
-
+        const url: string = `${productSingleSlug}/${slug}/`;
+        const promise = await axios.get(url);
         return promise.data;
     }
 
