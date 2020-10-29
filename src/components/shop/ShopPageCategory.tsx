@@ -37,8 +37,6 @@ function ShopPageCategory(props: Props) {
     const [brands, setBrands] = useState<IBrand[]>([]);
     const [latestProducts, setLatestProducts] = useState<IProduct[]>([]);
 
-    console.log('in ShopPageCategory', subcategories);
-
     if (category && subcategories === undefined) {
         subcategories = category.children || [];
     }
