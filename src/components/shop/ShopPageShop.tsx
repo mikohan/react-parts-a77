@@ -32,11 +32,7 @@ interface Props {
 }
 
 function ShopPageShop(props: Props) {
-    const {
-        layout,
-        gridLayout,
-        sidebarPosition = 'start',
-    } = props;
+    const { layout, gridLayout, sidebarPosition = 'start' } = props;
     const intl = useIntl();
     const router = useAppRouter();
     const shopState = useShop();
@@ -44,40 +40,49 @@ function ShopPageShop(props: Props) {
     // Replace current url.
     useEffect(() => {
         const query = buildQuery(shopState.options, shopState.filters);
-        const href = queryString.stringifyUrl({
-            ...queryString.parseUrl(router.asPath),
-            query: queryString.parse(query),
-        }, { encode: false });
-
-        router.replace({
-            pathname: router.pathname,
-            query: {
-                slug: router.query.slug,
+        const href = queryString.stringifyUrl(
+            {
+                ...queryString.parseUrl(router.asPath),
+                query: queryString.parse(query),
             },
-        }, removePrefix(href), {
-            shallow: true,
-        }).then(() => {
-            // This is necessary for the "History API" to work.
-            window.history.replaceState(
+            { encode: false }
+        );
+
+        router
+            .replace(
                 {
-                    ...window.history.state,
-                    options: {
-                        ...window.history.state.options,
-                        shallow: false,
+                    pathname: router.pathname,
+                    query: {
+                        slug: router.query.slug,
                     },
                 },
-                '',
-                baseUrl(href),
-            );
-        });
+                removePrefix(href),
+                {
+                    shallow: true,
+                }
+            )
+            .then(() => {
+                // This is necessary for the "History API" to work.
+                window.history.replaceState(
+                    {
+                        ...window.history.state,
+                        options: {
+                            ...window.history.state.options,
+                            shallow: false,
+                        },
+                    },
+                    '',
+                    baseUrl(href)
+                );
+            });
     }, [shopState.options, shopState.filters]);
 
     const hasSidebar = ['grid-3-sidebar', 'grid-4-sidebar'].includes(gridLayout);
-    const offCanvasSidebar: IShopPageOffCanvasSidebar = [
-        'grid-4-full',
-        'grid-5-full',
-        'grid-6-full',
-    ].includes(gridLayout) ? 'always' : 'mobile';
+    const offCanvasSidebar: IShopPageOffCanvasSidebar = ['grid-4-full', 'grid-5-full', 'grid-6-full'].includes(
+        gridLayout
+    )
+        ? 'always'
+        : 'mobile';
 
     const pageHeader = useMemo(() => {
         let pageTitle = intl.formatMessage({ id: 'HEADER_SHOP' });
@@ -103,9 +108,7 @@ function ShopPageShop(props: Props) {
         return null;
     }
 
-    const sidebar = (
-        <ShopSidebar offcanvas={offCanvasSidebar} />
-    );
+    const sidebar = <ShopSidebar offcanvas={offCanvasSidebar} />;
 
     const blockSplitClasses = classNames('block-split', {
         'block-split--has-sidebar': hasSidebar,

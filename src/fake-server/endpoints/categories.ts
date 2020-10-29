@@ -19,11 +19,13 @@ export function prepareCategory<T extends IBaseCategory>(category: T, depth?: nu
         parent = null;
     }
 
-    return JSON.parse(JSON.stringify({
-        ...category,
-        parent,
-        children,
-    }));
+    return JSON.parse(
+        JSON.stringify({
+            ...category,
+            parent,
+            children,
+        })
+    );
 }
 
 export function getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
@@ -40,6 +42,7 @@ export function getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOpti
 
 export function getCategories(options?: IGetCategoriesOptions): Promise<IShopCategory[]> {
     let categories = shopCategoriesTree.slice(0);
+    console.log(categories, ' In endpoints');
     const depth = options?.depth || 0;
     const optionParent = options?.parent;
     const optionSlugs = options?.slugs;

@@ -1,12 +1,7 @@
 // application
 import { ICategoryDef } from '~/fake-server/interfaces/category-def';
 import { makeIdGenerator } from '~/fake-server/utils';
-import {
-    IBaseCategory,
-    IBlogCategory,
-    ICategory,
-    IShopCategory,
-} from '~/interfaces/category';
+import { IBaseCategory, IBlogCategory, ICategory, IShopCategory } from '~/interfaces/category';
 
 const getNextId = makeIdGenerator();
 
@@ -42,7 +37,7 @@ function makeBlogCategory(def: ICategoryDef, parent: IBlogCategory | null): IBlo
 function makeCategories<T extends IBaseCategory>(
     makeFn: (def: ICategoryDef, parent: T | null) => T,
     defs: ICategoryDef[],
-    parent: T | null = null,
+    parent: T | null = null
 ): T[] {
     const categories: T[] = [];
 
