@@ -46,15 +46,15 @@ export class FakeShopApi implements ShopApi {
     async getCategories(options?: IGetCategoriesOptions): Promise<IShopCategory[]> {
         let url: string = '';
         if (options !== undefined && options!.hasOwnProperty('depth')) {
-            url = `${categoriesWithLevel}/?level=${options.depth}`;
+            url = `${categoriesWithLevel}/?depth=${options.depth}`;
         } else {
             let url: string = `${categoriesWithLevel}/`;
         }
 
-        // const promise = axios.get();
-        // const dataPromise = promise.then((res: any) => res.data);
-        // return dataPromise;
-        return getCategories(options);
+        const promise = axios.get(url);
+        const dataPromise = promise.then((res: any) => res.data);
+        return dataPromise;
+        // return getCategories(options);
     }
 
     getBrands(options?: IGetBrandsOptions): Promise<IBrand[]> {
