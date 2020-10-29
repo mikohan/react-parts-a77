@@ -36,7 +36,7 @@ import {
     getTopRatedProducts,
 } from '~/fake-server/endpoints';
 
-import { productSingleSlug } from '~/config';
+import { productSingleSlug, categoriesWithLevel } from '~/config';
 
 export class FakeShopApi implements ShopApi {
     getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
@@ -44,10 +44,17 @@ export class FakeShopApi implements ShopApi {
     }
 
     async getCategories(options?: IGetCategoriesOptions): Promise<IShopCategory[]> {
-        // const promise = axios.get('http://localhost:8000/testcategory/categories/');
-        // const dataPromise = promise.then((res: any) => res.data);
-        // return dataPromise;
-        return getCategories(options);
+        let url: string = '';
+        if (options !== undefined && options!.hasOwnProperty('depth')) {
+            url = `${categoriesWithLevel}/?depth=${options.depth}`;
+        } else {
+            let url: string = `${categoriesWithLevel}/`;
+        }
+
+        const promise = axios.get(url);
+        const dataPromise = promise.then((res: any) => res.data);
+        return dataPromise;
+        // return getCategories(options);
     }
 
     getBrands(options?: IGetBrandsOptions): Promise<IBrand[]> {

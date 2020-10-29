@@ -19,8 +19,6 @@ interface Props {
 function WidgetCategoriesList(props: Props) {
     const { categories } = props;
 
-    console.log('in side category widget', categories);
-
     const renderCategory: RenderFn = ({ toggle, setItemRef, setContentRef }, category: ICategory) => {
         const subs: ICategory[] = category.children || [];
 
