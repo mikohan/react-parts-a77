@@ -111,6 +111,7 @@ export function shopFetchCategoryThunk(categorySlug: string | null): ShopThunkAc
         if (canceled && process.browser) {
             return;
         }
+        // console.log(category, 'in shopAction FetchCategoryThunk');
 
         dispatch(shopFetchCategorySuccess(category));
     };
@@ -136,6 +137,7 @@ export function shopFetchProductsListThunk(): ShopThunkAction<Promise<void>> {
         }
 
         const productsList = await shopApi.getProductsList(shopState.options, filters);
+        console.log(productsList, 'In shop actions Product List');
 
         if (canceled && process.browser) {
             return;

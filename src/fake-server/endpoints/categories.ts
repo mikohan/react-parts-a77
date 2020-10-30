@@ -18,14 +18,15 @@ export function prepareCategory<T extends IBaseCategory>(category: T, depth?: nu
     } else if (category.parent === null) {
         parent = null;
     }
-
-    return JSON.parse(
+    const categoryToReturn = JSON.parse(
         JSON.stringify({
             ...category,
             parent,
             children,
         })
     );
+    // console.log(categoryToReturn, 'In endpoints, prepareCategory');
+    return categoryToReturn;
 }
 
 export function getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
@@ -36,13 +37,15 @@ export function getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOpti
     if (!category) {
         return error('Page Not Found');
     }
+    const categoryToReturn = prepareCategory(category, optionsValue.depth);
+    //console.log(categoryToReturn, options, 'In get category by slug');
 
-    return Promise.resolve(prepareCategory(category, optionsValue.depth));
+    return Promise.resolve(categoryToReturn);
 }
 
 export function getCategories(options?: IGetCategoriesOptions): Promise<IShopCategory[]> {
     let categories = shopCategoriesTree.slice(0);
-    console.log(categories, ' In endpoints');
+    // console.log(options?.slugs, options?.parent, options?.depth, ' In endpoints');
     const depth = options?.depth || 0;
     const optionParent = options?.parent;
     const optionSlugs = options?.slugs;
@@ -58,7 +61,7 @@ export function getCategories(options?: IGetCategoriesOptions): Promise<IShopCat
     }
 
     categories = categories.map((x) => prepareCategory(x, depth));
-
+    // console.log(clone(categories), 'In endpoints, getCategories');
     return Promise.resolve(clone(categories));
 }
 
