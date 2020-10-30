@@ -19,21 +19,21 @@ import Axios from 'axios';
 import { productListUrl } from '~/config';
 
 export async function getProductsList(
-    // products: IProduct[],
+    products: IProduct[],
     options: IListOptions = {},
     filterValues: IFilterValues = {}
 ): Promise<any> {
-    const promise = await Axios.get(`${productListUrl}/`);
+    // const promise = await Axios.get(`${productListUrl}/`);
 
-    let products = await promise.data.results; //dbProducts.slice(0);
+    // let products = await promise.data; //dbProducts.slice(0);
     const filters: AbstractFilterBuilder[] = [
         new CategoryFilterBuilder('category', 'Categories'),
-        // new VehicleFilterBuilder('vehicle', 'Vehicle'),
-        // new RangeFilterBuilder('price', 'Price'),
-        // new CheckFilterBuilder('brand', 'Brand'),
-        // new RadioFilterBuilder('discount', 'With Discount'),
+        new VehicleFilterBuilder('vehicle', 'Vehicle'),
+        new RangeFilterBuilder('price', 'Цена'),
+        new CheckFilterBuilder('brand', 'Brand', products),
+        new RadioFilterBuilder('discount', 'Со Скидкой', products),
         new RatingFilterBuilder('rating', 'Rating', products),
-        new ColorFilterBuilder('color', 'Color'),
+        // new ColorFilterBuilder('color', 'Color'),
     ];
 
     filters.forEach((filter) => filter.makeItems(products, filterValues[filter.slug]));
