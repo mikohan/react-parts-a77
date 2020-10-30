@@ -22,4 +22,6 @@ export const productSingleSlug: string = `http://localhost:8000/api/product/red/
 export const categoriesWithLevel = 'http://localhost:8000/testcategory/categories';
 export const categoryBySlugUrl = 'http://localhost:8000/testcategory/category';
 
+export const productListUrl = 'http://localhost:8000/testcategory/products/products';
+
 export const postsOnPage: number = 5; // Post on page settings also needs to be set on API endpoint on server
