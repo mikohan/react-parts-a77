@@ -76,8 +76,19 @@ export class FakeShopApi implements ShopApi {
 
     // Stop function to return get shop list with filters
 
-    async getProductsList(options: IListOptions = {}, filters: IFilterValues = {}): Promise<IProductsList> {
-        const promise = await axios.get(`${productListUrl}/`);
+    async getProductsList(
+        options: IListOptions = {},
+        filters: IFilterValues = {},
+        categorySlug: string
+    ): Promise<IProductsList> {
+        let url: string;
+        if (categorySlug) {
+            url = `${productListUrl}/?category=${categorySlug}`;
+        } else {
+            url = `${productListUrl}/`;
+        }
+
+        const promise = await axios.get(url);
         const products = await promise.data;
         return await getProductsList(products, options, filters);
     }

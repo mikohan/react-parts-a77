@@ -117,7 +117,9 @@ export function shopFetchCategoryThunk(categorySlug: string | null): ShopThunkAc
     };
 }
 
-export function shopFetchProductsListThunk(): ShopThunkAction<Promise<void>> {
+export function shopFetchProductsListThunk(categorySlug?: string): ShopThunkAction<Promise<void>> {
+    console.log('In shopFetchProductsListThunk', categorySlug);
+
     return async (dispatch, getState) => {
         let canceled = false;
 
@@ -136,8 +138,7 @@ export function shopFetchProductsListThunk(): ShopThunkAction<Promise<void>> {
             filters = { ...filters, category: shopState.categorySlug };
         }
 
-        const productsList = await shopApi.getProductsList(shopState.options, filters);
-        // console.log(productsList, 'In shop actions Product List');
+        const productsList = await shopApi.getProductsList(shopState.options, filters, categorySlug!);
 
         if (canceled && process.browser) {
             return;
@@ -148,30 +149,35 @@ export function shopFetchProductsListThunk(): ShopThunkAction<Promise<void>> {
 }
 
 export function shopSetOptionValueThunk(option: string, value: string): ShopThunkAction<Promise<void>> {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const shopState = getState()[SHOP_NAMESPACE];
         dispatch(shopSetOptionValue(option, value));
-        await dispatch(shopFetchProductsListThunk());
+        await dispatch(shopFetchProductsListThunk(shopState.categorySlug!));
     };
 }
 
 export function shopSetFilterValueThunk(filter: string, value: string | null): ShopThunkAction<Promise<void>> {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const shopState = getState()[SHOP_NAMESPACE];
+
         dispatch(shopSetFilterValue(filter, value));
-        await dispatch(shopFetchProductsListThunk());
+        await dispatch(shopFetchProductsListThunk(shopState.categorySlug!));
     };
 }
 
 export function shopResetFiltersThunk(): ShopThunkAction<Promise<void>> {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const shopState = getState()[SHOP_NAMESPACE];
         dispatch(shopResetFilters());
-        await dispatch(shopFetchProductsListThunk());
+        await dispatch(shopFetchProductsListThunk(shopState.categorySlug!));
     };
 }
 
 export function shopResetFilterThunk(activeFilter: IActiveFilter): ShopThunkAction<Promise<void>> {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const shopState = getState()[SHOP_NAMESPACE];
         dispatch(shopResetFilter(activeFilter));
-        await dispatch(shopFetchProductsListThunk());
+        await dispatch(shopFetchProductsListThunk(shopState.categorySlug!));
     };
 }
 
@@ -183,6 +189,9 @@ export function shopInitThunk(
     return async (dispatch) => {
         dispatch(shopInit(categorySlug, options, filters));
 
-        await Promise.all([dispatch(shopFetchCategoryThunk(categorySlug)), dispatch(shopFetchProductsListThunk())]);
+        await Promise.all([
+            dispatch(shopFetchCategoryThunk(categorySlug)),
+            dispatch(shopFetchProductsListThunk(categorySlug!)),
+        ]);
     };
 }
