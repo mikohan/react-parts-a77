@@ -64,7 +64,11 @@ export abstract class ShopApi {
 
     abstract getBrands(options?: IGetBrandsOptions): Promise<IBrand[]>;
 
-    abstract getProductsList(options?: IListOptions, filters?: IFilterValues): Promise<IProductsList>;
+    abstract getProductsList(
+        options?: IListOptions,
+        filters?: IFilterValues,
+        categorySlug?: string
+    ): Promise<IProductsList>;
 
     abstract getProductBySlug(slug: string): Promise<IProduct>;
 
@@ -88,7 +92,7 @@ export abstract class ShopApi {
 
     abstract getSearchSuggestions(
         query: string,
-        options?: IGetSearchSuggestionsOptions,
+        options?: IGetSearchSuggestionsOptions
     ): Promise<IGetSearchSuggestionsResult>;
 
     abstract checkout(data: ICheckoutData): Promise<IOrder>;

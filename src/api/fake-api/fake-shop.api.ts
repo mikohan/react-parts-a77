@@ -29,56 +29,79 @@ import {
     getPopularProducts,
     getProductAnalogs,
     getProductReviews,
-    getProductsList,
+    // getProductsList,
     getRelatedProducts,
     getSearchSuggestions,
     getSpecialOffers,
     getTopRatedProducts,
 } from '~/fake-server/endpoints';
 
-import { productSingleSlug, categoriesWithLevel, categoryBySlugUrl } from '~/config';
+import { getProductsList } from './productListLoader';
+
+import { productSingleSlug, categoriesWithLevel, categoryBySlugUrl, productListUrl } from '~/config';
 
 export class FakeShopApi implements ShopApi {
     async getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
-        // let url: string = '';
-        // if (options !== undefined && options!.hasOwnProperty('depth')) {
-        //     url = `${categoryBySlugUrl}/${slug}/?depth=${options.depth}`;
-        // } else {
-        //     url = `${categoryBySlugUrl}/${slug}/`;
-        // }
-        // const promise = await axios.get(url);
-        // return await promise.data;
+        let url: string = '';
+        if (options !== undefined && options!.hasOwnProperty('depth')) {
+            url = `${categoryBySlugUrl}/${slug}/?depth=${options.depth}`;
+        } else {
+            url = `${categoryBySlugUrl}/${slug}/`;
+        }
+        const promise = await axios.get(url);
+        return await promise.data;
 
-        return getCategoryBySlug(slug, options);
+        // return getCategoryBySlug(slug, options);
     }
 
     async getCategories(options?: IGetCategoriesOptions): Promise<IShopCategory[]> {
-        // let url: string = '';
-        // if (options !== undefined && options!.hasOwnProperty('depth')) {
-        //     url = `${categoriesWithLevel}/?depth=${options.depth}`;
-        // } else {
-        //     let url: string = `${categoriesWithLevel}/`;
-        // }
+        let url: string = '';
+        if (options !== undefined && options!.hasOwnProperty('depth')) {
+            url = `${categoriesWithLevel}/?depth=${options.depth}`;
+        } else {
+            let url: string = `${categoriesWithLevel}/`;
+        }
 
-        // const promise = axios.get(url);
-        // const dataPromise = promise.then((res: any) => res.data);
-        // return dataPromise;
-        return getCategories(options);
+        const promise = axios.get(url);
+        const dataPromise = promise.then((res: any) => res.data);
+        return dataPromise;
+        // return getCategories(options);
     }
 
     getBrands(options?: IGetBrandsOptions): Promise<IBrand[]> {
         return getBrands(options);
     }
 
-    getProductsList(options: IListOptions = {}, filters: IFilterValues = {}): Promise<IProductsList> {
-        return getProductsList(options, filters);
+    // Starts function to return get shop list with filters
+
+    // Stop function to return get shop list with filters
+
+    async getProductsList(
+        options: IListOptions = {},
+        filters: IFilterValues = {},
+        categorySlug: string
+    ): Promise<IProductsList> {
+        let url: string;
+        if (categorySlug) {
+            url = `${productListUrl}/?category=${categorySlug}`;
+        } else {
+            url = `${productListUrl}/`;
+        }
+
+        const promise = await axios.get(url);
+        const products = await promise.data;
+        return await getProductsList(products, options, filters);
     }
 
     async getProductBySlug(slug: string): Promise<IProduct> {
         // return getProductBySlug(slug);
-        const url: string = `${productSingleSlug}/${slug}/`;
-        const promise = await axios.get(url);
-        return promise.data;
+
+        // const url: string = `${productSingleSlug}/${slug}/`;
+        // const promise = await axios.get(url);
+        // return promise.data;
+
+        const promise = await axios.get(`${productListUrl}/${slug}/`);
+        return await promise.data.results;
     }
 
     getProductReviews(productId: number, options?: IListOptions): Promise<IReviewsList> {

@@ -39,6 +39,7 @@ export interface IListOptions {
     sort?: string;
     limit?: number;
     page?: number;
+    categorySlug?: string;
 }
 
 export interface IFilterValues {
