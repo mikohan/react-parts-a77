@@ -9,6 +9,7 @@ import { prepareCategory } from '~/fake-server/endpoints/categories';
 import { shopCategoriesList, shopCategoriesTree } from '~/fake-server/database/categories';
 import Axios from 'axios';
 import { ICategories } from '~/store/blog/blogActions';
+import { myCataFlat, shopCategoryLst } from '~/fake-server/tests/catFilter';
 
 export class CategoryFilterBuilder extends AbstractFilterBuilder {
     private value: string | null = null;
@@ -43,7 +44,8 @@ export class CategoryFilterBuilder extends AbstractFilterBuilder {
         categoryList.then((res: any) => {
             // const category = res; //.find((x: any) => x.slug === value);
         });
-        const category = shopCategoriesList.find((x: any) => x.slug === value);
+        // const category = shopCategoriesList.find((x: any) => x.slug === value);
+        const category = shopCategoryLst.find((x: any) => x.slug === value);
 
         if (category) {
             this.items = [prepareCategory(category, 1)];
@@ -51,9 +53,10 @@ export class CategoryFilterBuilder extends AbstractFilterBuilder {
             // console.log(this.items);
         } else {
             // this.items = shopCategoriesTree.map((x) => prepareCategory(x));
+            // console.log(shopCategoriesTree);
 
-            this.items = uniqueCats;
-            console.log(this.items);
+            this.items = myCataFlat.map((x: any) => prepareCategory(x));
+            // console.log(this.items);
         }
     }
 
