@@ -46,7 +46,6 @@ export class CategoryFilterBuilder extends AbstractFilterBuilder {
         });
         // const category = shopCategoriesList.find((x: any) => x.slug === value);
         const category = shopCategoryLst.find((x: any) => x.slug === value);
-        console.log(shopCategoryLst.length);
 
         if (category) {
             this.items = [prepareCategory(category, 1)];
