@@ -69,18 +69,15 @@ export async function getProductsList(
 
     const items = (products.slice(from - 1, to) as unknown) as Array<IProduct>;
 
-    return delayResponse(
-        Promise.resolve({
-            items,
-            page,
-            limit,
-            sort,
-            total,
-            pages,
-            from,
-            to,
-            filters: filters.map((x) => x.build()),
-        }),
-        350
-    );
+    return Promise.resolve({
+        items,
+        page,
+        limit,
+        sort,
+        total,
+        pages,
+        from,
+        to,
+        filters: filters.map((x) => x.build()),
+    });
 }
