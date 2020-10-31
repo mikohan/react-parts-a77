@@ -111,15 +111,12 @@ export function shopFetchCategoryThunk(categorySlug: string | null): ShopThunkAc
         if (canceled && process.browser) {
             return;
         }
-        // console.log(category, 'in shopAction FetchCategoryThunk');
 
         dispatch(shopFetchCategorySuccess(category));
     };
 }
 
 export function shopFetchProductsListThunk(categorySlug?: string): ShopThunkAction<Promise<void>> {
-    console.log('In shopFetchProductsListThunk', categorySlug);
-
     return async (dispatch, getState) => {
         let canceled = false;
 
