@@ -28,16 +28,16 @@ export class CategoryFilterBuilder extends AbstractFilterBuilder {
 
     makeItems(products: IProduct[], value: string): void {
         // console.log(shopCategoriesList.length, value);
-        const productCategories = products.map((product: any): any => {
-            return product.categories;
-        });
-        const productCats = productCategories.reduce((flat: any, toFlatten: any) => {
-            return flat.concat(toFlatten);
-        });
+        // const productCategories = products.map((product: any): any => {
+        //     return product.categories;
+        // });
+        // const productCats = productCategories.reduce((flat: any, toFlatten: any) => {
+        //     return flat.concat(toFlatten);
+        // });
 
-        const uniqueCats = productCats.filter(
-            (thing: any, i: any, arr: any) => arr.findIndex((t: any) => t.id === thing.id) === i
-        );
+        // const uniqueCats = productCats.filter(
+        //     (thing: any, i: any, arr: any) => arr.findIndex((t: any) => t.id === thing.id) === i
+        // );
 
         this.value = value === undefined ? null : value;
 
