@@ -10,25 +10,25 @@ import { shopCategoriesList, shopCategoriesTree } from '~/fake-server/database/c
 import Axios from 'axios';
 import { ICategories } from '~/store/blog/blogActions';
 import { myCataFlat, shopCategoryLst } from '~/fake-server/tests/catFilter';
+import { shopApi } from '~/api';
 
 export class CategoryFilterBuilder extends AbstractFilterBuilder {
+    category: IShopCategory;
+    constructor(slug: string, name: string, category: IShopCategory) {
+        super(slug, name);
+        this.category = category;
+    }
     private value: string | null = null;
 
     private items: IShopCategory[] = [];
-
-    async getCategoryList() {
-        const promise = Axios.get('http://localhost:8000/testcategory/categorylist/dvigatel/');
-        const result = (await promise).data;
-        return result;
-    }
 
     test(): boolean {
         return true;
     }
 
     makeItems(products: IProduct[], value: string): void {
-        // console.log(products);
-        const productCategories = products.map((product: any) => {
+        // console.log(shopCategoriesList.length, value);
+        const productCategories = products.map((product: any): any => {
             return product.categories;
         });
         const productCats = productCategories.reduce((flat: any, toFlatten: any) => {
@@ -40,22 +40,14 @@ export class CategoryFilterBuilder extends AbstractFilterBuilder {
         );
 
         this.value = value === undefined ? null : value;
-        const categoryList: any = this.getCategoryList();
-        categoryList.then((res: any) => {
-            // const category = res; //.find((x: any) => x.slug === value);
-        });
-        // const category = shopCategoriesList.find((x: any) => x.slug === value);
-        const category = shopCategoryLst.find((x: any) => x.slug === value);
 
-        if (category) {
-            this.items = [prepareCategory(category, 1)];
-
-            // console.log(this.items);
+        if (this.category) {
+            this.items = [prepareCategory(this.category, 1)];
+            console.log(this.items);
         } else {
             // this.items = shopCategoriesTree.map((x) => prepareCategory(x));
             // console.log(shopCategoriesTree);
-
-            this.items = myCataFlat.map((x: any) => prepareCategory(x));
+            // this.items = uniqueCats.map((x: any) => prepareCategory(x));
             // console.log(this.items);
         }
     }

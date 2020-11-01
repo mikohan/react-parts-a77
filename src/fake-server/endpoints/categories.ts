@@ -13,9 +13,9 @@ export function prepareCategory<T extends IBaseCategory>(category: T, depth?: nu
 
     let parent;
 
-    if (category.parent) {
+    if (category.parent && Object.keys(category.parent).length !== 0) {
         parent = prepareCategory(category.parent);
-    } else if (category.parent === null) {
+    } else if (category.parent === null || Object.keys(category.parent!).length === 0) {
         parent = null;
     }
     const categoryToReturn = JSON.parse(
