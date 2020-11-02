@@ -36,7 +36,7 @@ import {
     getTopRatedProducts,
 } from '~/fake-server/endpoints';
 
-import { getProductsList } from './productListLoader';
+import { getProductsListLoader } from './productListLoader';
 
 import { productSingleSlug, categoriesWithLevel, categoryBySlugUrl, productListUrl } from '~/config';
 
@@ -90,7 +90,7 @@ export class FakeShopApi implements ShopApi {
 
         const promise = await axios.get(url);
         const products = await promise.data;
-        return await getProductsList(products, options, filters);
+        return await getProductsListLoader(products, options, filters, categorySlug);
     }
 
     async getProductBySlug(slug: string): Promise<IProduct> {

@@ -17,17 +17,28 @@ import { VehicleFilterBuilder } from '~/fake-server/filters/vehicle-filter-build
 
 import Axios from 'axios';
 import { productListUrl } from '~/config';
+import { shopApi } from '..';
+import { IShopCategory } from '~/interfaces/category';
 
-export async function getProductsList(
+export async function getProductsListLoader(
     products: IProduct[],
     options: IListOptions = {},
-    filterValues: IFilterValues = {}
+    filterValues: IFilterValues = {},
+    categorySlug?: string
 ): Promise<any> {
-    // const promise = await Axios.get(`${productListUrl}/`);
+    // const promise = await Axios.get(`http://localhost:8000/testcategory/category/dvigatel/`);
 
-    // let products = await promise.data; //dbProducts.slice(0);
+    // let category = await promise.data; //dbProducts.slice(0);
+    let category: any = {};
+    if (categorySlug) {
+        category = await shopApi.getCategoryBySlug(categorySlug);
+    } else {
+        const res = await shopApi.getCategories();
+        category = res[0];
+    }
+
     const filters: AbstractFilterBuilder[] = [
-        new CategoryFilterBuilder('category', 'Categories'),
+        new CategoryFilterBuilder('category', 'Categories', category),
         new VehicleFilterBuilder('vehicle', 'Vehicle'),
         new RangeFilterBuilder('price', 'Цена'),
         new CheckFilterBuilder('brand', 'Brand', products),
