@@ -33,7 +33,8 @@ const url: { [key: string]: any } = {
     }),
     products: ({ filters }: { filters?: Record<string, string> } = {}): IAppLinkHref => ({
         href: {
-            pathname: '/catalog/products',
+            // pathname: '/catalog/products',
+            pathname: '/demo/shop/category-columns-4-sidebar',
             query: {
                 ...filters,
             },
