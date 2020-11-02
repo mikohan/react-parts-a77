@@ -27,23 +27,11 @@ export class CategoryFilterBuilder extends AbstractFilterBuilder {
     }
 
     makeItems(products: IProduct[], value: string): void {
-        // console.log(shopCategoriesList.length, value);
-        // const productCategories = products.map((product: any): any => {
-        //     return product.categories;
-        // });
-        // const productCats = productCategories.reduce((flat: any, toFlatten: any) => {
-        //     return flat.concat(toFlatten);
-        // });
-
-        // const uniqueCats = productCats.filter(
-        //     (thing: any, i: any, arr: any) => arr.findIndex((t: any) => t.id === thing.id) === i
-        // );
-
         this.value = value === undefined ? null : value;
 
         if (this.category) {
             this.items = [prepareCategory(this.category, 1)];
-            console.log(this.items);
+            // console.log(this.items);
         } else {
             // this.items = shopCategoriesTree.map((x) => prepareCategory(x));
             // console.log(shopCategoriesTree);

@@ -16,6 +16,7 @@ interface Props {
 
 function FilterCategory(props: Props) {
     const { options } = props;
+    // console.log(options);
 
     return (
         <div className="filter-category">
@@ -37,9 +38,7 @@ function FilterCategory(props: Props) {
                                 <span className="filter-category__arrow">
                                     <ArrowRoundedLeft6x9Svg />
                                 </span>
-                                <AppLink href={url.category(parent)}>
-                                    {parent.name}
-                                </AppLink>
+                                <AppLink href={url.category(parent)}>{parent.name}</AppLink>
                             </li>
                         ))}
                         <li
@@ -47,9 +46,7 @@ function FilterCategory(props: Props) {
                                 'filter-category__item--current': options.value,
                             })}
                         >
-                            <AppLink href={url.category(item)}>
-                                {item.name}
-                            </AppLink>
+                            <AppLink href={url.category(item)}>{item.name}</AppLink>
                         </li>
                         {item.children?.map((child) => (
                             <li key={child.id} className="filter-category__item filter-category__item--child">
