@@ -66,7 +66,12 @@ T[] {
         return promise.data;
     };
 
-    const list: any = categoriesData;
+    const filtredArray = categoriesData.filter((item: any) => {
+        return item.count !== 0;
+    });
+
+    const list: any = filtredArray;
+    console.log(list);
 
     let map: any = {},
         node,
