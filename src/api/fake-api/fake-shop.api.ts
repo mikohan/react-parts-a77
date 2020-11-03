@@ -59,7 +59,7 @@ export class FakeShopApi implements ShopApi {
         if (options !== undefined && options!.hasOwnProperty('depth')) {
             url = `${categoriesWithLevel}/?depth=${options.depth}`;
         } else {
-            let url: string = `${categoriesWithLevel}/`;
+            url = `${categoriesWithLevel}/`;
         }
 
         const promise = axios.get(url);
