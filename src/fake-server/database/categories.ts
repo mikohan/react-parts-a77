@@ -2,6 +2,8 @@
 import { ICategoryDef } from '~/fake-server/interfaces/category-def';
 import { makeIdGenerator } from '~/fake-server/utils';
 import { IBaseCategory, IBlogCategory, ICategory, IShopCategory } from '~/interfaces/category';
+import { categoriesData } from './new_categores';
+import axios from 'axios';
 
 const getNextId = makeIdGenerator();
 
@@ -52,6 +54,53 @@ function makeCategories<T extends IBaseCategory>(
     });
 
     return categories;
+}
+
+export function makeCategoriesFromApi<T extends IBaseCategory>(): // makeFn: (def: ICategoryDef, parent: T | null) => T,
+// defs: ICategoryDef[],
+// parent: T | null = null
+T[] {
+    const res = async () => {
+        const promise = await axios.get('http://localhost:8000/testcategory/categories/');
+
+        return promise.data;
+    };
+
+    const list: any = categoriesData;
+
+    let map: any = {},
+        node,
+        roots = [],
+        i;
+
+    for (i = 0; i < list.length; i += 1) {
+        map[list[i].id] = i; // initialize the map
+        list[i].children = []; // initialize the children
+    }
+
+    for (i = 0; i < list.length; i += 1) {
+        node = list[i];
+        if (node.parent !== null) {
+            // if you have dangling branches check that map[node.parentId] exists
+            list[map[node.parent]].children.push(node);
+        } else {
+            roots.push(node);
+        }
+    }
+
+    // const categories: T[] = [];
+
+    // defs.forEach((def) => {
+    //     const category: T = makeFn(def, parent);
+
+    //     if (def.children) {
+    //         category.children = makeCategories(makeFn, def.children, category);
+    //     }
+
+    //     categories.push(category);
+    // });
+
+    return roots;
 }
 
 function flatTree<T extends ICategory>(categories: T[]): T[] {
@@ -223,9 +272,13 @@ const blogCategoriesDef: ICategoryDef[] = [
     },
 ];
 
-export const shopCategoriesTree: IShopCategory[] = makeCategories(makeShopCategory, shopCategoriesDef);
+// export const shopCategoriesTree: IShopCategory[] = makeCategories(makeShopCategory, shopCategoriesDef);
 
-export const shopCategoriesList: IShopCategory[] = flatTree(shopCategoriesTree);
+export const shopCategoriesTree: IShopCategory[] = makeCategoriesFromApi();
+console.log(shopCategoriesTree);
+
+// export const shopCategoriesList: IShopCategory[] = flatTree(shopCategoriesTree);
+export const shopCategoriesList: IShopCategory[] = categoriesData;
 
 export const blogCategoriesTree: IBlogCategory[] = makeCategories(makeBlogCategory, blogCategoriesDef);
 
