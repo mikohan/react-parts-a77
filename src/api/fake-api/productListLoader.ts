@@ -37,6 +37,8 @@ export async function getProductsListLoader(
         category = res[0];
     }
 
+    // on master now
+
     const filters: AbstractFilterBuilder[] = [
         new CategoryFilterBuilder('category', 'Categories', category),
         new VehicleFilterBuilder('vehicle', 'Vehicle'),
