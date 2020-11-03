@@ -16,7 +16,7 @@ interface Props {
 
 function FilterCategory(props: Props) {
     const { options } = props;
-    // console.log(options);
+    console.log(options.items[0].count);
 
     return (
         <div className="filter-category">
@@ -48,11 +48,13 @@ function FilterCategory(props: Props) {
                         >
                             <AppLink href={url.category(item)}>{item.name}</AppLink>
                         </li>
-                        {item.children?.map((child) => (
-                            <li key={child.id} className="filter-category__item filter-category__item--child">
-                                <AppLink href={url.category(child)}>{child.name}</AppLink>
-                            </li>
-                        ))}
+                        {item.count === 0
+                            ? ''
+                            : item.children?.map((child) => (
+                                  <li key={child.id} className="filter-category__item filter-category__item--child">
+                                      <AppLink href={url.category(child)}>{child.name}</AppLink>
+                                  </li>
+                              ))}
                     </React.Fragment>
                 ))}
             </ul>

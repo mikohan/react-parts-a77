@@ -6,11 +6,12 @@ export interface IBaseCategory {
     type: string;
     name: string;
     slug: string;
-    image: string|null;
+    image: string | null;
     items?: number;
     parent?: this | null;
     children?: this[];
     customFields: ICustomFields;
+    count?: number;
 }
 
 export type IShopCategoryLayout = 'categories' | 'products';
