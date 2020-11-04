@@ -2,7 +2,7 @@
 import { ICategoryDef } from '~/fake-server/interfaces/category-def';
 import { makeIdGenerator } from '~/fake-server/utils';
 import { IBaseCategory, IBlogCategory, ICategory, IShopCategory } from '~/interfaces/category';
-import { categoriesData } from './new_categores';
+import { categoriesData, dataRecursive } from './new_categores';
 import axios from 'axios';
 
 const getNextId = makeIdGenerator();
@@ -56,59 +56,58 @@ function makeCategories<T extends IBaseCategory>(
     return categories;
 }
 
-export function makeCategoriesFromApi<T extends IBaseCategory>(): // makeFn: (def: ICategoryDef, parent: T | null) => T,
-// defs: ICategoryDef[],
-// parent: T | null = null
-T[] {
+// My reqursive function
+const treeify2 = (data: any, pid = null, parent = null) => {
+    return data.reduce((r: any, e: any) => {
+        if (e.parent === pid) {
+            const o = { ...e };
+            if (parent) o.parent = parent;
+
+            const children = treeify2(data, e.id, e);
+            if (children.length) o.children = children;
+
+            r.push(o);
+        }
+
+        return r;
+    }, []);
+};
+
+export async function makeCategoriesFromApi<T extends IBaseCategory>(): Promise<IShopCategory> {
     const res = async () => {
         const promise = await axios.get('http://localhost:8000/testcategory/categories/');
 
         return promise.data;
     };
 
-    const filtredArray = categoriesData.filter((item: any) => {
+    const cats = await res();
+    // filtering empty categories here
+    const filtredArray = cats.filter((item: any) => {
         return item.count !== 0;
     });
 
     const list: any = filtredArray;
-    console.log(list);
 
-    let map: any = {},
-        node,
-        roots = [],
-        i;
+    const tree: any = [];
+    const lookup: any = {};
 
-    for (i = 0; i < list.length; i += 1) {
-        map[list[i].id] = i; // initialize the map
-        list[i].children = []; // initialize the children
-    }
+    list.forEach((o: any) => {
+        lookup[o.id] = o;
+        lookup[o.id].children = [];
+    });
 
-    for (i = 0; i < list.length; i += 1) {
-        node = list[i];
-        if (node.parent !== null) {
-            // if you have dangling branches check that map[node.parentId] exists
-            list[map[node.parent]].children.push(node);
+    list.forEach((o: any) => {
+        if (o.parent !== null) {
+            lookup[o.parent.id].children.push(o);
         } else {
-            roots.push(node);
+            tree.push(o);
         }
-    }
+    });
 
-    // const categories: T[] = [];
-
-    // defs.forEach((def) => {
-    //     const category: T = makeFn(def, parent);
-
-    //     if (def.children) {
-    //         category.children = makeCategories(makeFn, def.children, category);
-    //     }
-
-    //     categories.push(category);
-    // });
-
-    return roots;
+    return tree;
 }
 
-function flatTree<T extends ICategory>(categories: T[]): T[] {
+export function flatTree<T extends ICategory>(categories: T[]): T[] {
     let result: T[] = [];
 
     categories.forEach((category) => {
@@ -279,8 +278,7 @@ const blogCategoriesDef: ICategoryDef[] = [
 
 // export const shopCategoriesTree: IShopCategory[] = makeCategories(makeShopCategory, shopCategoriesDef);
 
-export const shopCategoriesTree: IShopCategory[] = makeCategoriesFromApi();
-console.log(shopCategoriesTree);
+// export const shopCategoriesTree: IShopCategory[] = makeCategoriesFromApi();
 
 // export const shopCategoriesList: IShopCategory[] = flatTree(shopCategoriesTree);
 export const shopCategoriesList: IShopCategory[] = categoriesData;
