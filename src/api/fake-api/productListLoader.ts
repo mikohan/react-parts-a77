@@ -32,7 +32,6 @@ export async function getProductsListLoader(
     let category: any = {};
     if (categorySlug) {
         category = await shopApi.getCategoryBySlug(categorySlug);
-        // console.log(category, 'In shop categroy by slug in ProductsLoader');
     } else {
         const res = await shopApi.getCategories();
         category = res[0];
