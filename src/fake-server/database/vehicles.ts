@@ -6,22 +6,28 @@ import { IVehicleDef } from '~/fake-server/interfaces/vehicle-def';
 const getNextId = makeIdGenerator();
 
 function makeVehicles(defs: IVehicleDef[]): IVehicle[] {
-    return defs.map((def) => {
-        const range = typeof def.year === 'number' ? [def.year, def.year] : def.year;
-        const years = [];
+    const toReturn = defs
+        .map((def) => {
+            const range = typeof def.year === 'number' ? [def.year, def.year] : def.year;
 
-        for (let i = range[0]; i <= range[1]; i += 1) {
-            years.push(i);
-        }
+            const years = [];
 
-        return years.map((year) => ({
-            id: getNextId(),
-            year,
-            make: def.make,
-            model: def.model,
-            engine: def.engine,
-        }));
-    }).reduce((acc, v) => [...acc, ...v], []);
+            for (let i = range[0]; i <= range[1]; i += 1) {
+                years.push(i);
+            }
+            console.log(years);
+
+            return years.map((year) => ({
+                id: getNextId(),
+                year,
+                make: def.make,
+                model: def.model,
+                engine: def.engine,
+            }));
+        })
+        .reduce((acc, v) => [...acc, ...v], []);
+    console.log(toReturn);
+    return toReturn;
 }
 
 const vehiclesDef: IVehicleDef[] = [

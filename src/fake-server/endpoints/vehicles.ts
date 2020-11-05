@@ -11,6 +11,7 @@ export function getYears(): Promise<number[]> {
             result.push(vehicle.year);
         }
     });
+    // console.log(result , 'in getYears, endpoiints');
 
     return delayResponse(Promise.resolve(result.sort()), 750);
 }
@@ -18,11 +19,13 @@ export function getYears(): Promise<number[]> {
 export function getMakes(year: number): Promise<string[]> {
     const result: string[] = [];
 
-    vehicles.filter((x) => x.year === year).forEach((vehicle) => {
-        if (result.indexOf(vehicle.make) === -1) {
-            result.push(vehicle.make);
-        }
-    });
+    vehicles
+        .filter((x) => x.year === year)
+        .forEach((vehicle) => {
+            if (result.indexOf(vehicle.make) === -1) {
+                result.push(vehicle.make);
+            }
+        });
 
     return delayResponse(Promise.resolve(result.sort()), 750);
 }
@@ -30,11 +33,13 @@ export function getMakes(year: number): Promise<string[]> {
 export function getModels(year: number, make: string): Promise<string[]> {
     const result: string[] = [];
 
-    vehicles.filter((x) => x.year === year && x.make === make).forEach((vehicle) => {
-        if (result.indexOf(vehicle.model) === -1) {
-            result.push(vehicle.model);
-        }
-    });
+    vehicles
+        .filter((x) => x.year === year && x.make === make)
+        .forEach((vehicle) => {
+            if (result.indexOf(vehicle.model) === -1) {
+                result.push(vehicle.model);
+            }
+        });
 
     return delayResponse(Promise.resolve(result.sort()), 750);
 }
