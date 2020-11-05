@@ -6,7 +6,7 @@ import { ICategoryFilter } from '~/interfaces/filter';
 import { IProduct } from '~/interfaces/product';
 import { IShopCategory } from '~/interfaces/category';
 import { prepareCategory } from '~/fake-server/endpoints/categories';
-import { shopCategoriesList, shopCategoriesTree } from '~/fake-server/database/categories';
+
 import Axios from 'axios';
 import { ICategories } from '~/store/blog/blogActions';
 import { myCataFlat, shopCategoryLst } from '~/fake-server/tests/catFilter';

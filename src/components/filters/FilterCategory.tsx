@@ -16,7 +16,6 @@ interface Props {
 
 function FilterCategory(props: Props) {
     const { options } = props;
-    console.log(options.items[0].count);
 
     return (
         <div className="filter-category">

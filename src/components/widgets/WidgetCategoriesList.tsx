@@ -30,7 +30,10 @@ function WidgetCategoriesList(props: Props) {
                 })}
             >
                 <AppLink href={url.category(category)} className="widget-categories-list__root-link">
-                    {category.name}
+                    {
+                        category.name
+                        // Big Category
+                    }
                 </AppLink>
 
                 {subs.length > 0 && (
@@ -38,7 +41,9 @@ function WidgetCategoriesList(props: Props) {
                         {subs.slice(0, subs.length > 6 ? 5 : 6).map((sub, subIdx) => (
                             <li key={subIdx} className="widget-categories-list__child-item">
                                 <AppLink href={url.category(sub)} className="widget-categories-list__child-link">
-                                    {sub.name}
+                                    {
+                                        sub.name // Sub Category
+                                    }
                                 </AppLink>
                             </li>
                         ))}
@@ -51,7 +56,9 @@ function WidgetCategoriesList(props: Props) {
                             {subs.slice(5).map((sub, subIdx) => (
                                 <li key={subIdx} className="widget-categories-list__child-item">
                                     <AppLink href={url.category(sub)} className="widget-categories-list__child-link">
-                                        {sub.name}
+                                        {
+                                            sub.name // Hidden Sub Category
+                                        }
                                     </AppLink>
                                 </li>
                             ))}

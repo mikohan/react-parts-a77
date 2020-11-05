@@ -42,30 +42,30 @@ import { productSingleSlug, categoriesWithLevel, categoryBySlugUrl, productListU
 
 export class FakeShopApi implements ShopApi {
     async getCategoryBySlug(slug: string, options?: IGetCategoryBySlugOptions): Promise<IShopCategory> {
-        let url: string = '';
-        if (options !== undefined && options!.hasOwnProperty('depth')) {
-            url = `${categoryBySlugUrl}/${slug}/?depth=${options.depth}`;
-        } else {
-            url = `${categoryBySlugUrl}/${slug}/`;
-        }
-        const promise = await axios.get(url);
-        return await promise.data;
+        // let url: string = '';
+        // if (options !== undefined && options!.hasOwnProperty('depth')) {
+        //     url = `${categoryBySlugUrl}/${slug}/?depth=${options.depth}`;
+        // } else {
+        //     url = `${categoryBySlugUrl}/${slug}/`;
+        // }
+        // const promise = await axios.get(url);
+        // return await promise.data;
 
-        // return getCategoryBySlug(slug, options);
+        return getCategoryBySlug(slug, options);
     }
 
     async getCategories(options?: IGetCategoriesOptions): Promise<IShopCategory[]> {
-        let url: string = '';
-        if (options !== undefined && options!.hasOwnProperty('depth')) {
-            url = `${categoriesWithLevel}/?depth=${options.depth}`;
-        } else {
-            url = `${categoriesWithLevel}/`;
-        }
+        // let url: string = '';
+        // if (options !== undefined && options!.hasOwnProperty('depth')) {
+        //     url = `${categoriesWithLevel}/?depth=${options.depth}`;
+        // } else {
+        //     url = `${categoriesWithLevel}/`;
+        // }
 
-        const promise = axios.get(url);
-        const dataPromise = promise.then((res: any) => res.data);
-        return dataPromise;
-        // return getCategories(options);
+        // const promise = axios.get(url);
+        // const dataPromise = promise.then((res: any) => res.data);
+        // return dataPromise;
+        return getCategories(options);
     }
 
     getBrands(options?: IGetBrandsOptions): Promise<IBrand[]> {
