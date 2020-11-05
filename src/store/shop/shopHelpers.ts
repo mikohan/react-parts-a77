@@ -70,8 +70,6 @@ export function buildQuery(options: IListOptions, filters: IFilterValues) {
 export default async function getShopPageData(context: GetServerSidePropsContext, slug?: string): Promise<void> {
     const categorySlug = slug || (typeof context.params?.slug === 'string' ? context.params.slug : null);
 
-    console.log(categorySlug, 'in Store shopHelpers');
-
     if (typeof context.req.url === 'string') {
         const query = queryString.stringify(queryString.parseUrl(context.req.url).query);
         const options = parseQueryOptions(query);
