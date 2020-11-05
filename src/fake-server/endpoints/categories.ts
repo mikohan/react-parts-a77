@@ -41,12 +41,11 @@ export async function getCategoryBySlug(slug: string, options?: IGetCategoryBySl
     const category = shopCategoriesList.find((x: any) => x.slug === slug);
     // console.log('--------------------------');
     // console.log('Find category in list', category);
+    console.log(slug, 'In getCategories by slug');
 
     if (!category) {
-        return error('Page Not Found');
+        return error('Page Not Found Needs to find Where it is coling from');
     }
-    const categoryToReturn = prepareCategory(category, optionsValue.depth);
-    // console.log(categoryToReturn, options, 'In get category by slug');
 
     return Promise.resolve(category);
 }

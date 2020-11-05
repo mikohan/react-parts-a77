@@ -24,7 +24,7 @@ const dataShopCurrencies: ICurrency[] = [
         code: 'RUB',
         symbol: '₽',
         name: 'Russian Ruble',
-        rate: 64,
+        rate: 85,
     },
 ];
 

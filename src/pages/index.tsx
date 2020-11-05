@@ -22,6 +22,7 @@ function Page() {
 
     /**
      * Featured products.
+     * It is all needs to refactor
      */
     const featuredProducts = useProductTabs(
         useMemo(
@@ -43,17 +44,17 @@ function Page() {
             {
                 image: '/images/categories/category-overlay-1.jpg',
                 mobileImage: '/images/categories/category-overlay-1-mobile.jpg',
-                categorySlug: 'tires-wheels',
+                categorySlug: 'dvigatel',
             },
             {
                 image: '/images/categories/category-overlay-2.jpg',
                 mobileImage: '/images/categories/category-overlay-2-mobile.jpg',
-                categorySlug: 'interior-parts',
+                categorySlug: 'porshnevaja',
             },
             {
                 image: '/images/categories/category-overlay-3.jpg',
                 mobileImage: '/images/categories/category-overlay-3-mobile.jpg',
-                categorySlug: 'engine-drivetrain',
+                categorySlug: 'avtohimija',
             },
         ],
         []
