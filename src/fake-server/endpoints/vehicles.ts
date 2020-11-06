@@ -1,23 +1,25 @@
 // application
 import { clone, delayResponse, error } from '~/fake-server/utils';
 import { IVehicle } from '~/interfaces/vehicle';
-import { userVehicles, vehicles } from '~/fake-server/database/vehicles';
+import { userVehicles, vehicles, makeVehiclesPromise } from '~/fake-server/database/vehicles';
+import { AnyCnameRecord } from 'dns';
 
-export function getYears(): Promise<number[]> {
+export async function getYears(): Promise<number[]> {
     const result: number[] = [];
+    const vehicles: any = await makeVehiclesPromise();
 
-    vehicles.forEach((vehicle) => {
+    vehicles.forEach((vehicle: any) => {
         if (result.indexOf(vehicle.year) === -1) {
             result.push(vehicle.year);
         }
     });
-    // console.log(result , 'in getYears, endpoiints');
 
-    return delayResponse(Promise.resolve(result.sort()), 750);
+    return delayResponse(Promise.resolve(result.sort()), 150);
 }
 
-export function getMakes(year: number): Promise<string[]> {
+export async function getMakes(year: number): Promise<string[]> {
     const result: string[] = [];
+    const vehicles: IVehicle[] = await makeVehiclesPromise();
 
     vehicles
         .filter((x) => x.year === year)
@@ -27,11 +29,12 @@ export function getMakes(year: number): Promise<string[]> {
             }
         });
 
-    return delayResponse(Promise.resolve(result.sort()), 750);
+    return delayResponse(Promise.resolve(result.sort()), 150);
 }
 
-export function getModels(year: number, make: string): Promise<string[]> {
+export async function getModels(year: number, make: string): Promise<string[]> {
     const result: string[] = [];
+    const vehicles: IVehicle[] = await makeVehiclesPromise();
 
     vehicles
         .filter((x) => x.year === year && x.make === make)
@@ -41,13 +44,14 @@ export function getModels(year: number, make: string): Promise<string[]> {
             }
         });
 
-    return delayResponse(Promise.resolve(result.sort()), 750);
+    return delayResponse(Promise.resolve(result.sort()), 150);
 }
 
-export function getVehicles(year: number, make: string, model: string): Promise<IVehicle[]> {
+export async function getVehicles(year: number, make: string, model: string): Promise<IVehicle[]> {
+    const vehicles: IVehicle[] = await makeVehiclesPromise();
     const result = vehicles.filter((x) => x.year === year && x.make === make && x.model === model);
 
-    return delayResponse(Promise.resolve(result.sort()), 750);
+    return delayResponse(Promise.resolve(result.sort()), 150);
 }
 
 export function getVehicleByVin(vin: string): Promise<IVehicle> {
