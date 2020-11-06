@@ -1,4 +1,8 @@
 /* eslint-disable import/prefer-default-export,class-methods-use-this */
+// 1. Needs to implement Redux save vehicle
+// 2. Place to show where vehicle will be shown
+// 3. Method to store active vehicle to localstorage
+// 4. Method to get from localstorage to Redux if exists
 
 // application
 import { IVehicle } from '~/interfaces/vehicle';
