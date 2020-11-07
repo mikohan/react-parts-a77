@@ -24,11 +24,10 @@ export function garageSetCurrent(vehicleId: number | null): GarageSetCurrentActi
 }
 
 export function loadUserVehicles(): GarageThunkAction<Promise<void>> {
-    return (dispatch) => (
+    return (dispatch) =>
         vehicleApi.getUserVehicles().then((items) => {
             dispatch(garageSetItems(items));
-        })
-    );
+        });
 }
 
 export function garageAddItem(vehicleId: number): GarageThunkAction<Promise<void>> {
