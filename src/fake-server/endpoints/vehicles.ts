@@ -71,7 +71,7 @@ export function getUserVehicles(): Promise<IVehicle[]> {
 }
 
 export function addUserVehicles(vehicleId: number): Promise<void> {
-    const index = userVehicles.findIndex((x) => x.id === vehicleId);
+    const index = userVehicles.findIndex((x: any) => x.id === vehicleId);
     const vehicle = vehicles.find((x) => x.id === vehicleId);
 
     if (vehicle && index === -1) {
@@ -82,7 +82,7 @@ export function addUserVehicles(vehicleId: number): Promise<void> {
 }
 
 export function removeUserVehicles(vehicleId: number): Promise<void> {
-    const index = userVehicles.findIndex((x) => x.id === vehicleId);
+    const index = userVehicles.findIndex((x: any) => x.id === vehicleId);
 
     if (index !== -1) {
         userVehicles.splice(index, 1);
