@@ -5,6 +5,8 @@
 //
 // 4. Method to get from localstorage to Redux if exists
 // Done for today
+// Need to figure out where I can add vehicle to local storage for anonimus user
+// Then find way to to get from localstorage
 
 // application
 import { IVehicle } from '~/interfaces/vehicle';
