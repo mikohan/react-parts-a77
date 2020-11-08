@@ -7,7 +7,7 @@
 // Done for today
 // Need to figure out where I can add vehicle to local storage for anonimus user
 // Then find way to to get from localstorage
-// ggggggggg
+// Add sone new comment on sanday
 
 // application
 import { IVehicle } from '~/interfaces/vehicle';
