@@ -21,6 +21,7 @@ import {
     getYears,
     removeUserVehicles,
 } from '~/fake-server/endpoints';
+import Axios from 'axios';
 
 export class FakeVehicleApi extends VehicleApi {
     getYears(): Promise<number[]> {
@@ -58,7 +59,7 @@ export class FakeVehicleApi extends VehicleApi {
         return getUserVehicles();
     }
 
-    addUserVehicle(vehicleId: number): Promise<void> {
+    async addUserVehicle(vehicleId: number): Promise<void> {
         return addUserVehicles(vehicleId);
     }
 

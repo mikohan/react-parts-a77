@@ -31,7 +31,7 @@ function makeVehicles(defs: IVehicleDef[]): IVehicle[] {
 }
 
 export async function makeVehiclesPromise(): Promise<IVehicle[]> {
-    const promise: any = await axios.get('http://localhost:8000/testcategory/vehicle/');
+    const promise: any = await axios.get('http://localhost:8000/testcategory/products/vehicles/');
     const res: IVehicleDef[] = await promise.data;
     const toReturn: IVehicle[] = res
         .map((def) => {
