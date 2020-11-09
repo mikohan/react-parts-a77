@@ -162,3 +162,7 @@ export const userVehiclesTmp: IVehicle[] = vehicles.filter((vehicle: IVehicle, i
 export const userVehicles = Object.values(
     userVehiclesTmp.reduce((acc, cur) => Object.assign(acc, { [cur.id]: cur }), {})
 );
+
+if (typeof window !== 'undefined') {
+    localStorage.setItem('userVehicles', JSON.stringify(userVehicles));
+}

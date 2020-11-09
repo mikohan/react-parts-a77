@@ -44,10 +44,17 @@ export class FakeVehicleApi extends VehicleApi {
     }
 
     getUserVehicles(): Promise<IVehicle[]> {
-        // const userVehicles: IVehicle[] = JSON.parse(localStorage.getItem('userVehicles') || '');
-        // if (userVehicles) {
-        //     return Promise.resolve(userVehicles);
-        // }
+        try {
+            const loc = localStorage.getItem('userVehicles') || '';
+            const userVehicles: IVehicle[] = JSON.parse(loc);
+            console.log(userVehicles);
+            if (userVehicles) {
+                return Promise.resolve(userVehicles);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+
         return getUserVehicles();
     }
 
