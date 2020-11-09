@@ -8,6 +8,8 @@
 // Need to figure out where I can add vehicle to local storage for anonimus user
 // Then find way to to get from localstorage
 
+// value is saving to filter so the task becomes easyer
+
 // application
 import { IVehicle } from '~/interfaces/vehicle';
 import { VehicleApi } from '~/api/base';
