@@ -9,11 +9,13 @@ import { ICheckFilter, ICheckFilterValue } from '~/interfaces/filter';
 interface Props {
     options: ICheckFilter;
     value: ICheckFilterValue;
-    onChangeValue?: (event: { filter: ICheckFilter, value: ICheckFilterValue }) => void;
+    onChangeValue?: (event: { filter: ICheckFilter; value: ICheckFilterValue }) => void;
 }
 
 function FilterCheck(props: Props) {
     const { options, value, onChangeValue } = props;
+
+    console.log(options, value);
 
     const updateValue = (newValue: ICheckFilterValue) => {
         if (onChangeValue) {
@@ -50,9 +52,7 @@ function FilterCheck(props: Props) {
                         />
 
                         <span className="filter-list__title">{item.name}</span>
-                        {item.count !== 0 && (
-                            <span className="filter-list__counter">{item.count}</span>
-                        )}
+                        {item.count !== 0 && <span className="filter-list__counter">{item.count}</span>}
                     </label>
                 ))}
             </div>
