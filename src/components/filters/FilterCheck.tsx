@@ -15,7 +15,7 @@ interface Props {
 function FilterCheck(props: Props) {
     const { options, value, onChangeValue } = props;
 
-    console.log(options, value);
+    // console.log(options, value);
 
     const updateValue = (newValue: ICheckFilterValue) => {
         if (onChangeValue) {
