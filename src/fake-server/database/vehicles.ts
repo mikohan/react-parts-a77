@@ -3,6 +3,7 @@ import { IVehicle } from '~/interfaces/vehicle';
 import { makeIdGenerator } from '~/fake-server/utils';
 import { IVehicleDef } from '~/fake-server/interfaces/vehicle-def';
 import axios from 'axios';
+import { vehiclesUrl } from '~/config';
 
 const getNextId = makeIdGenerator();
 
@@ -31,7 +32,7 @@ function makeVehicles(defs: IVehicleDef[]): IVehicle[] {
 }
 
 export async function makeVehiclesPromise(): Promise<IVehicle[]> {
-    const promise: any = await axios.get('http://localhost:8000/testcategory/products/vehicles/');
+    const promise: any = await axios.get(`${vehiclesUrl}/`);
     const res: IVehicleDef[] = await promise.data;
     const toReturn: IVehicle[] = res
         .map((def) => {

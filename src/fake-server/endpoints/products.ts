@@ -42,7 +42,7 @@ function getProducts(shift: number, categorySlug: string | null = null): IProduc
 
 export function getProductsList(options: IListOptions = {}, filterValues: IFilterValues = {}): Promise<IProductsList> {
     const filters: AbstractFilterBuilder[] = [
-        new CategoryFilterBuilder('category', 'Categories'),
+        // new CategoryFilterBuilder('category', 'Categories'),
         new VehicleFilterBuilder('vehicle', 'Vehicle'),
         new RangeFilterBuilder('price', 'Price'),
         // new CheckFilterBuilder('brand', 'Brand'),

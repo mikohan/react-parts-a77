@@ -31,15 +31,18 @@ const url: { [key: string]: any } = {
         href: `/catalog/[slug]${category.layout === 'products' ? '/products' : ''}?slug=${category.slug}`,
         as: `/catalog/${category.slug}${category.layout === 'products' ? '/products' : ''}`,
     }),
-    products: ({ filters }: { filters?: Record<string, string> } = {}): IAppLinkHref => ({
-        href: {
-            // pathname: '/catalog/products',
-            pathname: '/demo/shop/category-columns-4-sidebar',
-            query: {
-                ...filters,
+    products: ({ filters }: { filters?: Record<string, string> } = {}): IAppLinkHref => {
+        console.log(filters, 'in services/url.ts ');
+        return {
+            href: {
+                // pathname: '/catalog/products',
+                pathname: '/demo/shop/category-columns-4-sidebar',
+                query: {
+                    ...filters,
+                },
             },
-        },
-    }),
+        };
+    },
     product: (product: IProduct): IAppLinkHref => ({
         href: `/products/[slug]?slug=${product.slug}`,
         as: `/products/${product.slug}`,

@@ -148,15 +148,3 @@ export class FakeShopApi implements ShopApi {
         return checkout(data);
     }
 }
-
-const showConsole: any = (func: any, params: any) => {
-    if (!params) {
-        return func().then((res: any) => console.log(res), 'in bare function');
-    }
-    return func(params).then((res: any) => console.log(res, ` with slug:${params}`));
-};
-
-// showConsole(getCategoryBySlug, 'fuel-pumps');
-const api = new FakeShopApi();
-
-// showConsole(api.getCategories, null);

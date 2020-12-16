@@ -23,7 +23,6 @@ import {
     getYears,
     removeUserVehicles,
 } from '~/fake-server/endpoints';
-import Axios from 'axios';
 
 export class FakeVehicleApi extends VehicleApi {
     getYears(): Promise<number[]> {
